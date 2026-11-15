@@ -1,7 +1,15 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { plan, getDay, getWeek, phrasesForWeek, TOTAL_DAYS } from '@/lib/plan'
+import {
+  plan,
+  getDay,
+  getWeek,
+  phrasesForWeek,
+  weekdayName,
+  formatDateUz,
+  TOTAL_DAYS,
+} from '@/lib/plan'
 import { useAuthStore } from '@/stores/auth'
 import { useProgressStore } from '@/stores/progress'
 import TaskList from '@/components/TaskList.vue'
@@ -25,11 +33,20 @@ const weekDays = computed(() =>
     const p = progress.dayProgress(n)
     return {
       n,
-      weekday: getDay(n).weekday.slice(0, 2),
-      state: p.done === p.total ? 'done' : p.done > 0 ? 'partial' : n === dayNum.value ? 'current' : '',
+      weekday: progress.dateOfDay(n) ? weekdayName(progress.dateOfDay(n)).slice(0, 2) : '',
+      state:
+        p.done === p.total ? 'done' : p.done > 0 ? 'partial' : n === dayNum.value ? 'current' : '',
     }
   }),
 )
+
+const leftover = computed(() => progress.leftoverTasks(dayNum.value))
+const startedOn = computed(() => progress.dayDatesOf(dayNum.value).start)
+// the day before the current one, if it was finished today
+const finishedToday = computed(() => {
+  const prev = dayNum.value - 1
+  return prev >= 1 && progress.dayDatesOf(prev).end === progress.dateOfDay(dayNum.value) ? prev : 0
+})
 
 const greeting = computed(() => {
   const h = new Date().getHours()
@@ -44,7 +61,9 @@ const greeting = computed(() => {
     <div class="page-head">
       <div>
         <p class="eyebrow">{{ greeting }}{{ firstName ? `, ${firstName}` : '' }} 👋</p>
-        <h1 v-if="!allDone">Kun {{ dayNum }} <span class="muted">/ {{ TOTAL_DAYS }}</span></h1>
+        <h1 v-if="!allDone">
+          Kun {{ dayNum }} <span class="muted">/ {{ TOTAL_DAYS }}</span>
+        </h1>
         <h1 v-else>90 kun tugadi! 🎉</h1>
       </div>
       <RouterLink :to="`/day/${dayNum}`" class="btn">
@@ -60,7 +79,9 @@ const greeting = computed(() => {
       </div>
       <div class="stat card">
         <span class="label">Tugagan kunlar</span>
-        <strong>{{ progress.completedDays }}<small>/{{ TOTAL_DAYS }}</small></strong>
+        <strong
+          >{{ progress.completedDays }}<small>/{{ TOTAL_DAYS }}</small></strong
+        >
       </div>
       <div class="stat card">
         <span class="label">Ketma-ket kunlar</span>
@@ -72,10 +93,27 @@ const greeting = computed(() => {
       </div>
     </div>
 
+    <div v-if="!allDone && progress.carriedOver" class="card notice warn">
+      <strong>⏳ Kun {{ dayNum }} hali tugamagan</strong>
+      <p class="small">
+        {{ formatDateUz(startedOn) }}, {{ weekdayName(startedOn).toLowerCase() }} kuni boshlangan.
+        Keyingi kunga o'tishdan oldin qolgan {{ leftover.length }} ta vazifani bajaring:
+      </p>
+      <ul>
+        <li v-for="t in leftover" :key="t.index">{{ t.title }}</li>
+      </ul>
+    </div>
+    <div v-else-if="!allDone && finishedToday && dp.done === 0" class="card notice ok">
+      <strong>✅ Kun {{ finishedToday }} bugun tugadi!</strong>
+      <p class="small">
+        Dam olishingiz mumkin yoki xohlasangiz Kun {{ dayNum }} ni hozir boshlang.
+      </p>
+    </div>
+
     <section class="card today">
       <div class="today-head">
         <div>
-          <p class="eyebrow">{{ week.number }}-hafta · {{ day.weekday }}</p>
+          <p class="eyebrow">{{ week.number }}-hafta · {{ progress.dayLabel(dayNum) }}</p>
           <h2>{{ week.title }}</h2>
           <div v-if="week.focus.length" class="row focus">
             <span v-for="f in week.focus" :key="f.label" class="chip">
@@ -101,6 +139,10 @@ const greeting = computed(() => {
         </RouterLink>
       </div>
 
+      <p v-if="leftover.length && dp.done > 0" class="small muted left">
+        Qoldi: <b>{{ leftover.map((t) => t.title).join(', ') }}</b>
+      </p>
+
       <TaskList :day="dayNum" />
     </section>
 
@@ -111,7 +153,9 @@ const greeting = computed(() => {
         <div class="row">
           <h3>Haftaning iboralari</h3>
           <span class="spacer" />
-          <RouterLink :to="{ path: '/phrases', query: { week: week.number } }" class="small">Hammasi →</RouterLink>
+          <RouterLink :to="{ path: '/phrases', query: { week: week.number } }" class="small"
+            >Hammasi →</RouterLink
+          >
         </div>
         <ul class="phrases">
           <li v-for="p in phrases" :key="p.en">
@@ -132,7 +176,10 @@ const greeting = computed(() => {
             <span class="small">{{ s.task }}</span>
           </li>
         </ul>
-        <RouterLink :to="{ path: '/speak', query: { day: dayNum, task: 3 } }" class="btn primary full">
+        <RouterLink
+          :to="{ path: '/speak', query: { day: dayNum, task: 3 } }"
+          class="btn primary full"
+        >
           <AppIcon name="mic" :size="18" /> Inglizcha xulosani yozib olish
         </RouterLink>
       </section>
@@ -141,6 +188,28 @@ const greeting = computed(() => {
 </template>
 
 <style scoped>
+.notice {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 4px solid var(--accent);
+}
+.notice.warn {
+  border-left-color: var(--warn);
+}
+.notice.ok {
+  border-left-color: var(--success);
+}
+.notice p,
+.notice ul {
+  margin: 0;
+}
+.notice ul {
+  padding-left: 20px;
+}
+.left {
+  margin: -6px 0 0;
+}
 .stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

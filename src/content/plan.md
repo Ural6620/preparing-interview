@@ -116,7 +116,7 @@ version: 3.0
 
 > Kun 8–14 · 1-OY — Asos
 
-**English:** past simple, because / so · **Texnik:** hash map, mavjud loyihalarni hujjatlash
+**English:** past simple, because / so · **Texnik:** hash map, mavjud loyihalarni hujjatlash, JVM qanday ishlaydi
 
 #### Haftaning iboralari
 
@@ -138,7 +138,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Input: portfolio walkthrough video
-- [ ] **Texnik vazifa** (50 daq) — Hash map nazariyasi: qanday ishlaydi, collision, qachon ishlatiladi
+- [ ] **Texnik vazifa** (50 daq) — Hash map nazariyasi: Java `HashMap` ichida qanday ishlaydi (`hashCode`/`equals`, bucket, collision), qachon ishlatiladi
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:9 week:2 -->
@@ -178,7 +178,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Jonli: loyihangni tushuntir
-- [ ] **Texnik vazifa** (50 daq) — Ikkinchi loyiha uchun diagramma + qarorlar
+- [ ] **Texnik vazifa** (50 daq) — Java qanday ishlaydi: JDK/JRE/JVM, bytecode, heap vs stack, garbage collection
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:14 week:2 -->
@@ -195,7 +195,7 @@ version: 3.0
 
 > Kun 15–21 · 1-OY — Asos
 
-**English:** present continuous, frequency adverbs · **Texnik:** Git, testing, two pointers
+**English:** present continuous, frequency adverbs · **Texnik:** Git, testing (JUnit 5, Mockito), two pointers
 
 #### Haftaning iboralari
 
@@ -241,7 +241,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Monolog: "How my team works"
-- [ ] **Texnik vazifa** (50 daq) — Testing: unit / integration / e2e, mocking, test pyramid
+- [ ] **Texnik vazifa** (50 daq) — Testing: unit / integration / e2e, test pyramid — JUnit 5 + Mockito
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:19 week:3 -->
@@ -257,7 +257,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Jonli: jamoa jarayonlari
-- [ ] **Texnik vazifa** (50 daq) — Amaliyot: mavjud loyihangga 5 ta unit test yoz
+- [ ] **Texnik vazifa** (50 daq) — Amaliyot: Java kodingga JUnit 5 bilan 5 ta unit test yoz (bittasida Mockito mock)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:21 week:3 -->
@@ -274,7 +274,7 @@ version: 3.0
 
 > Kun 22–28 · 1-OY — Asos
 
-**English:** sequence words, if · **Texnik:** sliding window, clean code, SOLID
+**English:** sequence words, if · **Texnik:** sliding window, Java OOP, Collections, exceptions, Stream API, SOLID
 
 #### Haftaning iboralari
 
@@ -296,7 +296,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Input: code review video
-- [ ] **Texnik vazifa** (50 daq) — Clean code: nomlash, kichik funksiyalar, DRY, KISS
+- [ ] **Texnik vazifa** (50 daq) — Java OOP: class, interface vs abstract class, 4 ustun, `equals`/`hashCode` + clean code (nomlash, DRY, KISS)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:23 week:4 -->
@@ -312,7 +312,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
-- [ ] **Texnik vazifa** (50 daq) — SOLID — har bir prinsipga o'z kodingdan misol
+- [ ] **Texnik vazifa** (50 daq) — SOLID — har bir prinsipga Java misol (interface + constructor injection)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:25 week:4 -->
@@ -320,7 +320,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Monolog: "A bug I fixed"
-- [ ] **Texnik vazifa** (50 daq) — Debugging: DevTools, breakpoint, logging, network tab — amaliyot
+- [ ] **Texnik vazifa** (50 daq) — Java Collections: List/Set/Map, ArrayList vs LinkedList, generics + debugging (IntelliJ breakpoint, DevTools network tab)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:26 week:4 -->
@@ -336,7 +336,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Jonli: kod ko'rsatish
-- [ ] **Texnik vazifa** (50 daq) — Eski kodingdan 1 faylni SOLID bo'yicha refactor qil
+- [ ] **Texnik vazifa** (50 daq) — Java: exceptions (checked/unchecked), Stream API, Optional, record — eski kodingdan 1 faylni shular bilan refactor qil
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:28 week:4 -->
@@ -434,7 +434,7 @@ version: 3.0
 
 > Kun 36–42 · 2-OY — Texnik sohalar + portfolio loyiha
 
-**Tushunchalar:** REST, HTTP methods & status codes, authentication vs authorization, JWT vs session, middleware
+**Tushunchalar:** REST, HTTP methods & status codes, Spring Boot (IoC/DI, MVC), validation, Spring Security + JWT, filter va error handling
 
 #### Haftaning iboralari
 
@@ -444,8 +444,9 @@ version: 3.0
 | We use GET to read and POST to create | O'qishga GET, yaratishga POST |
 | A 401 means unauthorized, a 403 means forbidden | 401 — autentifikatsiya yo'q, 403 — ruxsat yo'q |
 | Authentication is who you are, authorization is what you can do | Authentication — kimligingiz, authorization — nima qila olishingiz |
-| We hash passwords with bcrypt | Parollarni bcrypt bilan hash qilamiz |
-| The middleware runs before the request reaches the handler | Middleware so'rov handler'ga yetguncha ishlaydi |
+| We hash passwords with BCrypt | Parollarni BCrypt bilan hash qilamiz |
+| Spring injects the dependency through the constructor | Spring dependency'ni constructor orqali beradi |
+| The filter runs before the request reaches the controller | Filter so'rov controller'ga yetguncha ishlaydi |
 | It's stateless | U stateless |
 | We validate the input on the server side | Input'ni server tomonda tekshiramiz |
 
@@ -456,7 +457,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Input: REST explainer
-- [ ] **Texnik vazifa** (50 daq) — HTTP chuqur: methods, status codes, headers, idempotency
+- [ ] **Texnik vazifa** (50 daq) — HTTP chuqur (methods, status codes, idempotency) + Spring'ga kirish: IoC, Dependency Injection, bean'lar, Spring Boot starter'lar
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:37 week:6 -->
@@ -464,7 +465,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — 5 tushuncha × 1 daqiqa
-- [ ] **Texnik vazifa** (50 daq) — REST dizayn: resurs nomlash, pagination, filtering, versioning
+- [ ] **Texnik vazifa** (50 daq) — REST dizayn + Spring MVC: `@RestController`, DTO, `ResponseEntity`, pagination (`Pageable`), versioning
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:38 week:6 -->
@@ -472,7 +473,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
-- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** backend — CRUD endpoint'lar (boards, tasks)
+- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** Spring Boot backend — boards/tasks CRUD: Controller → Service → Repository (Spring Data JPA)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:39 week:6 -->
@@ -480,7 +481,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Monolog: "What happens when you log in"
-- [ ] **Texnik vazifa** (50 daq) — Auth: JWT, refresh token, session, OAuth, password hashing
+- [ ] **Texnik vazifa** (50 daq) — Auth: Spring Security filter chain, JWT, refresh token, session vs token, BCrypt
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:40 week:6 -->
@@ -488,7 +489,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — AI: 10 ta backend savol
-- [ ] **Texnik vazifa** (50 daq) — Error handling, logging, rate limiting, validation
+- [ ] **Texnik vazifa** (50 daq) — Spring'da xatolar: Bean Validation (`@Valid`), `@RestControllerAdvice`, logging (SLF4J), filter/interceptor, rate limiting
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:41 week:6 -->
@@ -496,7 +497,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Jonli: API dizayni
-- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** register/login, JWT middleware, himoyalangan route'lar
+- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** register/login, JWT filter (`OncePerRequestFilter`), himoyalangan endpoint'lar, `@WebMvcTest` bilan 2 ta test
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:42 week:6 -->
@@ -504,7 +505,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Audio tahlili
-- [ ] **Texnik vazifa** (50 daq) — Q&A bank: REST, idempotency, JWT vs session, 401 vs 403 — 10 ta javob
+- [ ] **Texnik vazifa** (50 daq) — Q&A bank: REST, idempotency, JWT vs session, 401 vs 403, DI, bean scope — 10 ta javob
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 ---
@@ -551,7 +552,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
-- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** schema, migration'lar, relation'lar, seed data
+- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** schema, Flyway migration'lar, JPA entity va relation'lar (`@ManyToOne`/`@OneToMany`), seed data
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:46 week:7 -->
@@ -567,7 +568,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — AI: 10 ta DB savol
-- [ ] **Texnik vazifa** (50 daq) — Transaction, ACID, isolation levels, deadlock; N+1 va yechimi
+- [ ] **Texnik vazifa** (50 daq) — Transaction, ACID, isolation levels, deadlock; Spring `@Transactional`; N+1 va JPA'da yechimi
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:48 week:7 -->
@@ -575,7 +576,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Jonli: DB tanlovi bahsi
-- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** kerakli index'lar, EXPLAIN bilan tekshirish, N+1 ni tuzatish
+- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** kerakli index'lar, EXPLAIN bilan tekshirish, JPA N+1 ni `JOIN FETCH` / `@EntityGraph` bilan tuzatish
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:49 week:7 -->
@@ -583,7 +584,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Audio tahlili
-- [ ] **Texnik vazifa** (50 daq) — Q&A bank: index, ACID, SQL vs NoSQL, N+1, normalization — 10 ta javob
+- [ ] **Texnik vazifa** (50 daq) — Q&A bank: index, ACID, SQL vs NoSQL, N+1, `@Transactional`, JPA lazy/eager — 10 ta javob
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 ---
@@ -622,7 +623,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — 5 tushuncha × 1 daqiqa
-- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** Dockerfile (FE + BE), docker-compose (+ PostgreSQL)
+- [ ] **Texnik vazifa** (50 daq) — **Loyiha:** Dockerfile (Vue + Spring Boot, multi-stage Maven build), docker-compose (+ PostgreSQL)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:52 week:8 -->
@@ -630,7 +631,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
-- [ ] **Texnik vazifa** (50 daq) — CI/CD: GitHub Actions — lint, test, build
+- [ ] **Texnik vazifa** (50 daq) — CI/CD: GitHub Actions — backend `./mvnw verify` (JUnit), frontend lint + test, build
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:53 week:8 -->
@@ -881,7 +882,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — AI: masala ber, ovoz chiqarib yech
-- [ ] **Texnik vazifa** (50 daq) — Timed: 2 ta Medium (eng zaif mavzudan)
+- [ ] **Texnik vazifa** (50 daq) — Java concurrency: thread, `ExecutorService`, `synchronized`, `CompletableFuture`, virtual threads + 1 ta Medium
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:76 week:11 -->
@@ -889,7 +890,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Jonli: live coding mock
-- [ ] **Texnik vazifa** (50 daq) — Backend live coding: 1 ta endpoint + validation + test
+- [ ] **Texnik vazifa** (50 daq) — Backend live coding: Spring Boot'da 1 ta endpoint + Bean Validation + MockMvc test
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:77 week:11 -->
@@ -929,7 +930,7 @@ version: 3.0
 
 - [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
 - [ ] **English vazifa** (25 daq) — Interviewer'ga savollar tayyorlash
-- [ ] **Texnik vazifa** (50 daq) — Q&A bank to'liq takrori: FE + BE
+- [ ] **Texnik vazifa** (50 daq) — Q&A bank to'liq takrori: FE + BE (Java, Spring)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
 
 <!-- day:81 week:12 -->
@@ -1029,8 +1030,8 @@ Interview'dan o'tish = **texnik bilim** + **uni inglizcha tushuntira olish**. Ik
 
 | Oy oxiri | English | Texnik |
 |---|---|---|
-| 1-oy | O'zing, loyihang, ishing va kodingni tushuntirasan | CV/GitHub tayyor, Easy algoritm masalalari, Git va testing |
-| 2-oy | Frontend, backend, DB, DevOps tushunchalarini tushuntirasan | Har bir sohadan interview savollariga javob, portfolio loyiha deploy qilingan |
+| 1-oy | O'zing, loyihang, ishing va kodingni tushuntirasan | CV/GitHub tayyor, Easy algoritm masalalari, Git, Java Core, JUnit |
+| 2-oy | Frontend, backend, DB, DevOps tushunchalarini tushuntirasan | Spring Boot backend, har bir sohadan interview savollariga javob, portfolio loyiha deploy qilingan |
 | 3-oy | Mock interview'dan o'tasan | System design asoslari, Medium masalalar, 8 ta STAR hikoya |
 
 **Halol baho:** A2 dan boshlab 180 soatda English taxminan B1 ga chiqadi, texnik mavzularda esa undan ham yaxshiroq bo'ladi, chunki iboralar tayyor. Mahalliy kompaniyalar va texnik qismi inglizcha bo'lgan interview'lar uchun bu yetarli. Xalqaro kompaniyalarning to'liq inglizcha interview'lari uchun 3 oydan keyin ham English'ni davom ettirish kerak bo'ladi.
@@ -1116,10 +1117,10 @@ Interview'da gapirish uchun **yangi, toza, deploy qilingan** loyiha. Tavsiya: **
 | Qism | Talab |
 |---|---|
 | Frontend | Vue yoki React + TypeScript, routing, state management, form validation |
-| Backend | REST API, JWT authentication, validation, error handling |
-| Database | PostgreSQL, 3+ jadval (users, boards, tasks), migration'lar, index |
-| DevOps | Docker + docker-compose, GitHub Actions (lint + test), deploy (VPS yoki bepul hosting) |
-| Sifat | Unit testlar, inglizcha README (arxitektura diagrammasi bilan) |
+| Backend | Java 21 + Spring Boot 3: REST API (Controller → Service → Repository), Spring Security + JWT, Bean Validation, `@RestControllerAdvice` |
+| Database | PostgreSQL + Spring Data JPA, 3+ jadval (users, boards, tasks), Flyway migration'lar, index |
+| DevOps | Docker (multi-stage Maven build) + docker-compose, GitHub Actions (`mvnw verify` + frontend lint/test), deploy (VPS yoki bepul hosting) |
+| Sifat | JUnit 5 + Mockito, `@WebMvcTest`/MockMvc, Testcontainers (ixtiyoriy), frontend'da Vitest; inglizcha README (arxitektura diagrammasi bilan) |
 
 Bu loyiha 2-haftadagi PSTR hikoyangga, 9-haftadagi system design'ga va 10-haftadagi behavioral javoblarga material bo'ladi.
 
@@ -1127,11 +1128,11 @@ Bu loyiha 2-haftadagi PSTR hikoyangga, 9-haftadagi system design'ga va 10-haftad
 
 ## Resurslar
 
-**English input:** Fireship (0.75x), Web Dev Simplified, ByteByteGo, Hussein Nasser, konferensiya talk'lari
+**English input:** Fireship (0.75x), Web Dev Simplified, ByteByteGo, Hussein Nasser, Amigoscode, Java Brains, Spring I/O konferensiya talk'lari
 
 **Algoritmlar:** LeetCode, NeetCode (Blind 75 / NeetCode 150 ro'yxatlari, video yechimlar bilan)
 
-**Nazariya:** MDN (frontend, HTTP), javascript.info, rasmiy framework docs, PostgreSQL docs, Docker docs, OWASP Top 10
+**Nazariya:** MDN (frontend, HTTP), javascript.info, dev.java (Java Core), Spring Guides (spring.io/guides), Spring Boot reference docs, Baeldung, PostgreSQL docs, Docker docs, OWASP Top 10
 
 **System design:** ByteByteGo, "System Design Primer" (GitHub)
 

@@ -15,6 +15,7 @@
     "deploy:rules": "firebase deploy --only firestore:rules"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
     "firebase": "^13.3.0",
     "marked": "^18.2.0",
     "pinia": "^4.0.3",

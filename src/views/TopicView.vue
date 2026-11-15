@@ -6,7 +6,8 @@ import { useProgressStore } from '@/stores/progress'
 import QuestionCard from '@/components/QuestionCard.vue'
 import SpeakButton from '@/components/SpeakButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
-import { inlineMd } from '@/lib/inlineMd'
+import { inlineMd, blocksMd } from '@/lib/inlineMd'
+import CodeBlock from '@/components/CodeBlock.vue'
 
 const route = useRoute()
 const progress = useProgressStore()
@@ -47,6 +48,25 @@ const okCount = computed(
       <ul class="points">
         <li v-for="p in topic.keyPoints" :key="p" v-html="inlineMd(p)" />
       </ul>
+    </section>
+
+    <section v-if="topic.lesson?.length" class="card lesson">
+      <h2>Dars</h2>
+      <nav v-if="topic.lesson.length > 2" class="toc small">
+        <a v-for="(l, i) in topic.lesson" :key="i" :href="`#l${i}`">{{ i + 1 }}. {{ l.title }}</a>
+      </nav>
+      <article v-for="(l, i) in topic.lesson" :id="`l${i}`" :key="i" class="lesson-part">
+        <h3>{{ i + 1 }}. {{ l.title }}</h3>
+        <template v-for="(b, j) in blocksMd(l.body)" :key="j">
+          <ul v-if="b.type === 'ul'"><li v-for="(it, k) in b.items" :key="k" v-html="it" /></ul>
+          <ol v-else-if="b.type === 'ol'"><li v-for="(it, k) in b.items" :key="k" v-html="it" /></ol>
+          <p v-else v-html="b.html" />
+        </template>
+        <div v-if="l.code" class="lesson-code">
+          <span v-if="l.lang" class="chip lang">{{ l.lang }}</span>
+          <CodeBlock :code="l.code" />
+        </div>
+      </article>
     </section>
 
     <section v-if="topic.vocab?.length" class="card">
@@ -155,6 +175,54 @@ const okCount = computed(
 }
 .vocab small {
   display: block;
+}
+.lesson {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.lesson h2,
+.lesson h3 {
+  margin: 0;
+}
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+.toc a {
+  text-decoration: none;
+}
+.lesson-part {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-margin-top: 72px;
+}
+.lesson-part p,
+.lesson-part ul,
+.lesson-part ol {
+  margin: 0;
+}
+.lesson-part ul,
+.lesson-part ol {
+  padding-left: 1.3em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lesson-code {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.lang {
+  align-self: flex-start;
+  font-size: 0.72rem;
 }
 .qs {
   display: flex;

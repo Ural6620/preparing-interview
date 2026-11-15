@@ -1,7 +1,7 @@
 // Loads every knowledge file in src/content/knowledge/ (except algorithms.js, which has its own schema).
 const modules = import.meta.glob('../content/knowledge/*.js', { eager: true, import: 'default' })
 
-const ORDER = ['frontend', 'backend', 'database', 'devops', 'engineering', 'system-design', 'behavioral', 'grammar']
+const ORDER = ['frontend', 'backend', 'java', 'spring', 'database', 'devops', 'engineering', 'system-design', 'behavioral', 'grammar']
 
 export const algorithms = Object.entries(modules).find(([p]) => p.endsWith('/algorithms.js'))?.[1] || {
   patterns: [],

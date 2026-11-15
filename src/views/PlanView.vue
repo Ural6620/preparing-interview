@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { plan, getDay, getWeek, TOTAL_DAYS } from '@/lib/plan'
+import { plan, getWeek, TOTAL_DAYS } from '@/lib/plan'
 import { useProgressStore } from '@/stores/progress'
 import SelfAssessment from '@/components/SelfAssessment.vue'
 
@@ -11,6 +11,7 @@ function dayState(n) {
   const p = progress.dayProgress(n)
   if (p.total && p.done === p.total) return 'done'
   if (p.done > 0) return 'partial'
+  if (progress.isLocked(n)) return 'locked'
   if (n === progress.currentDay) return 'current'
   return ''
 }
@@ -40,7 +41,9 @@ const monthWeeks = computed(() =>
         <h1>Reja</h1>
       </div>
       <div class="overall">
-        <span class="muted small">{{ progress.completedDays }}/{{ TOTAL_DAYS }} kun · {{ progress.percent }}%</span>
+        <span class="muted small"
+          >{{ progress.completedDays }}/{{ TOTAL_DAYS }} kun · {{ progress.percent }}%</span
+        >
         <div class="bar"><span :style="{ width: progress.percent + '%' }" /></div>
       </div>
     </div>
@@ -62,9 +65,13 @@ const monthWeeks = computed(() =>
           </div>
           <h3>{{ w.title }}</h3>
           <p v-if="w.focus.length" class="small muted focus">
-            <span v-for="f in w.focus" :key="f.label"><b>{{ f.label }}:</b> {{ f.value }}<br /></span>
+            <span v-for="f in w.focus" :key="f.label"
+              ><b>{{ f.label }}:</b> {{ f.value }}<br
+            /></span>
           </p>
-          <div class="bar"><span :style="{ width: progress.weekProgress(w.number).pct + '%' }" /></div>
+          <div class="bar">
+            <span :style="{ width: progress.weekProgress(w.number).pct + '%' }" />
+          </div>
           <div class="days">
             <RouterLink
               v-for="d in w.days"
@@ -72,7 +79,7 @@ const monthWeeks = computed(() =>
               :to="`/day/${d}`"
               class="d"
               :class="dayState(d)"
-              :title="`Kun ${d} · ${getDay(d).weekday}`"
+              :title="`Kun ${d} · ${progress.dayLabel(d)}`"
             >
               {{ d }}
             </RouterLink>
@@ -177,6 +184,9 @@ const monthWeeks = computed(() =>
 .d.partial {
   background: var(--success-soft);
   color: var(--success);
+}
+.d.locked {
+  opacity: 0.5;
 }
 .d.current {
   outline: 2px solid var(--accent);

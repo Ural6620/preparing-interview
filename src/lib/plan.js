@@ -28,3 +28,38 @@ export function todayISO(d = new Date()) {
   const day = String(d.getDate()).padStart(2, '0')
   return `${y}-${m}-${day}`
 }
+
+export function parseISO(iso) {
+  const [y, m, d] = iso.split('-').map(Number)
+  return new Date(y, m - 1, d)
+}
+
+export function addDaysISO(iso, n) {
+  const d = parseISO(iso)
+  d.setDate(d.getDate() + n)
+  return todayISO(d)
+}
+
+const WEEKDAYS = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba']
+const MONTHS = [
+  'yanvar',
+  'fevral',
+  'mart',
+  'aprel',
+  'may',
+  'iyun',
+  'iyul',
+  'avgust',
+  'sentabr',
+  'oktabr',
+  'noyabr',
+  'dekabr',
+]
+
+export const weekdayName = (iso) => WEEKDAYS[parseISO(iso).getDay()]
+
+/** '2026-11-14' → '14-noyabr' */
+export function formatDateUz(iso) {
+  const d = parseISO(iso)
+  return `${d.getDate()}-${MONTHS[d.getMonth()]}`
+}

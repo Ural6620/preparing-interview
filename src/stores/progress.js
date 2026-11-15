@@ -2,13 +2,22 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { doc, onSnapshot, setDoc, increment, serverTimestamp } from 'firebase/firestore'
 import { db, firebaseEnabled } from '@/lib/firebase'
-import { plan, taskKey, todayISO, TOTAL_TASKS } from '@/lib/plan'
+import {
+  plan,
+  taskKey,
+  todayISO,
+  addDaysISO,
+  weekdayName,
+  formatDateUz,
+  TOTAL_TASKS,
+} from '@/lib/plan'
 
 const LOCAL_KEY = 'interview-prep:progress'
 
 const empty = () => ({
   done: {}, // { d1_0: true }
   activity: {}, // { '2026-11-13': 3 }  — number of tasks ticked that day
+  dayDates: {}, // { '1': { start: '2026-11-14', end: '2026-11-15' } } — when each plan day was started / finished
   mistakes: [], // [{ id, date, said, correct, type }]
   qa: [], // [{ id, question, answer, example, followUp, status }]
   audioLog: [], // [{ id, date, day, topic, seconds, pauses, note, wpm }]
@@ -17,6 +26,7 @@ const empty = () => ({
   qaStatus: {}, // knowledge-base questions: { 'closures-0': 'ok' | 'review' }
   problems: {}, // algorithm problems: { 'two-sum': 'solved' | 'unaided' }
   assessments: [], // [{ id, date, day, scores: { fe, be, db, devops, dsa, english } }]
+  aiChecks: {}, // { d1_2: { passed, score, feedback, todo, corrections, answer, date } } — last AI review
 })
 
 function readLocal() {
@@ -43,6 +53,12 @@ export const useProgressStore = defineStore('progress', () => {
   let unsubscribe = null
 
   const remote = () => firebaseEnabled && uid
+
+  // Today's date as a reactive value, so an app left open past midnight moves on.
+  const today = ref(todayISO())
+  const tick = () => (today.value = todayISO())
+  setInterval(tick, 60_000)
+  if (typeof document !== 'undefined') document.addEventListener('visibilitychange', tick)
 
   /** Attach the store to a signed-in user (or local mode when Firebase is off). */
   function bind(user) {
@@ -87,11 +103,14 @@ export const useProgressStore = defineStore('progress', () => {
    * `local` mutates data.value; `patch` is the Firestore merge payload.
    */
   function commit(local, patch) {
+    tick()
     local(data.value)
     if (remote()) {
-      setDoc(doc(db, 'users', uid), { ...patch, updatedAt: serverTimestamp() }, { merge: true }).catch(
-        (e) => (syncError.value = e.message),
-      )
+      setDoc(
+        doc(db, 'users', uid),
+        { ...patch, updatedAt: serverTimestamp() },
+        { merge: true },
+      ).catch((e) => (syncError.value = e.message))
     } else {
       writeLocal(data.value)
     }
@@ -102,18 +121,56 @@ export const useProgressStore = defineStore('progress', () => {
     return Boolean(data.value.done[taskKey(day, i)])
   }
 
-  function toggleTask(day, i) {
+  /** A day can be worked on only once every earlier day is finished. */
+  const isLocked = (day) => day > currentDay.value
+
+  /**
+   * Set a task's done state, keeping the day's start/finish dates in step.
+   * Returns false (and changes nothing) for a locked future day.
+   */
+  function setTaskDone(day, i, value, extraLocal = () => {}, extraPatch = {}) {
+    if (value && isLocked(day)) return false
+    tick()
     const key = taskKey(day, i)
-    const value = !data.value.done[key]
-    const today = todayISO()
-    const patch = { done: { [key]: value }, lastDay: day }
-    if (value) patch.activity = { [today]: increment(1) }
+    const date = today.value
+    const changed = Boolean(data.value.done[key]) !== value
+    const dayTasks = plan.days.find((d) => d.number === day)?.tasks || []
+    const willBeComplete = dayTasks.every((_, j) => (j === i ? value : isDone(day, j)))
+    const prev = data.value.dayDates?.[day] || {}
+    const dates = { start: prev.start || date, end: willBeComplete ? prev.end || date : null }
+
+    const patch = {
+      ...extraPatch,
+      done: { [key]: value },
+      lastDay: day,
+      dayDates: { [day]: dates },
+    }
+    if (value && changed) patch.activity = { [date]: increment(1) }
     commit((d) => {
+      extraLocal(d)
       d.done[key] = value
       d.lastDay = day
-      if (value) d.activity[today] = (d.activity[today] || 0) + 1
+      d.dayDates = { ...d.dayDates, [day]: dates }
+      if (value && changed) d.activity[date] = (d.activity[date] || 0) + 1
     }, patch)
+    return true
   }
+
+  function toggleTask(day, i) {
+    return setTaskDone(day, i, !isDone(day, i))
+  }
+
+  /** Save an AI review of a task; a pass also ticks the task. */
+  function saveAiCheck(day, i, result) {
+    const key = taskKey(day, i)
+    const entry = { ...result, date: todayISO() }
+    const local = (d) => (d.aiChecks = { ...d.aiChecks, [key]: entry })
+    if (result.passed) return setTaskDone(day, i, true, local, { aiChecks: { [key]: entry } })
+    commit(local, { aiChecks: { [key]: entry } })
+    return true
+  }
+
+  const aiCheckOf = (day, i) => data.value.aiChecks?.[taskKey(day, i)] || null
 
   // status '' removes the mark (stored as null — merge can't delete keys)
   function setQaStatus(key, status) {
@@ -154,11 +211,51 @@ export const useProgressStore = defineStore('progress', () => {
     return { done, total, pct: total ? Math.round((done / total) * 100) : 0 }
   }
 
-  /** The first day that still has unfinished tasks — "where you are". */
+  /**
+   * "Where you are": the first day that still has unfinished tasks. The plan
+   * never moves on while a day is unfinished, and never leaves a day behind.
+   */
   const currentDay = computed(() => {
     const next = plan.days.find((d) => !isDayComplete(d.number))
     return next ? next.number : plan.days.at(-1).number
   })
+
+  /** Tasks of a day that are still not done: [{ index, title }] */
+  function leftoverTasks(n) {
+    const day = plan.days.find((d) => d.number === n)
+    if (!day) return []
+    return day.tasks
+      .map((t, index) => ({ index, title: t.title }))
+      .filter((t) => !isDone(n, t.index))
+  }
+
+  const dayDatesOf = (n) => data.value.dayDates?.[n] || {}
+
+  /**
+   * True when the current day was started on an earlier date and still isn't
+   * finished — i.e. it was left over from a previous session.
+   */
+  const carriedOver = computed(() => {
+    const start = dayDatesOf(currentDay.value).start
+    return Boolean(start && start < today.value && !isDayComplete(currentDay.value))
+  })
+
+  /**
+   * Real date for a plan day: the date it was finished, today for the
+   * current day, or projected forward from today for days not reached yet.
+   */
+  function dateOfDay(n) {
+    if (n === currentDay.value)
+      return isDayComplete(n) ? dayDatesOf(n).end || today.value : today.value
+    if (n < currentDay.value) return dayDatesOf(n).end || null
+    return addDaysISO(today.value, n - currentDay.value)
+  }
+
+  /** 'Shanba, 14-noyabr' for a plan day ('' when the date isn't known). */
+  function dayLabel(n) {
+    const iso = dateOfDay(n)
+    return iso ? `${weekdayName(iso)}, ${formatDateUz(iso)}` : ''
+  }
 
   const totalDone = computed(() => Object.values(data.value.done).filter(Boolean).length)
   const percent = computed(() => Math.round((totalDone.value / TOTAL_TASKS) * 100))
@@ -220,6 +317,12 @@ export const useProgressStore = defineStore('progress', () => {
     bind,
     isDone,
     toggleTask,
+    isLocked,
+    leftoverTasks,
+    carriedOver,
+    dayDatesOf,
+    saveAiCheck,
+    aiCheckOf,
     setQaStatus,
     setProblem,
     setDayNote,
@@ -227,6 +330,8 @@ export const useProgressStore = defineStore('progress', () => {
     isDayComplete,
     weekProgress,
     currentDay,
+    dateOfDay,
+    dayLabel,
     totalDone,
     percent,
     completedDays,

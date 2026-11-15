@@ -47,9 +47,17 @@ function onNote() {
       <span v-else class="btn icon sm" style="visibility: hidden" />
       <div class="center">
         <p class="eyebrow">{{ week.number }}-hafta · {{ week.title }}</p>
-        <h1>Kun {{ n }} · {{ day.weekday }}</h1>
+        <h1>Kun {{ n }}</h1>
+        <p v-if="progress.dayLabel(n)" class="small muted date">
+          {{ progress.isDayComplete(n) ? 'Tugatilgan: ' : '' }}{{ progress.dayLabel(n) }}
+        </p>
       </div>
-      <RouterLink v-if="n < TOTAL_DAYS" :to="`/day/${n + 1}`" class="btn icon sm" title="Keyingi kun">
+      <RouterLink
+        v-if="n < TOTAL_DAYS"
+        :to="`/day/${n + 1}`"
+        class="btn icon sm"
+        title="Keyingi kun"
+      >
         <AppIcon name="chevronRight" :size="18" />
       </RouterLink>
       <span v-else class="btn icon sm" style="visibility: hidden" />
@@ -61,9 +69,12 @@ function onNote() {
           {{ dp.done === dp.total ? 'Bajarildi ✓' : `${dp.done}/${dp.total} bajarildi` }}
         </span>
         <span v-if="n === progress.currentDay" class="chip warn">Hozirgi kun</span>
+        <span v-else-if="progress.isLocked(n)" class="chip">🔒 Yopiq</span>
         <span class="muted small">{{ week.month }}</span>
       </div>
-      <div class="bar"><span :style="{ width: (dp.total ? (dp.done / dp.total) * 100 : 0) + '%' }" /></div>
+      <div class="bar">
+        <span :style="{ width: (dp.total ? (dp.done / dp.total) * 100 : 0) + '%' }" />
+      </div>
       <div v-if="week.focus.length" class="row focus">
         <span v-for="f in week.focus" :key="f.label" class="chip">
           <b v-if="f.label">{{ f.label }}:</b> {{ f.value }}
@@ -79,7 +90,10 @@ function onNote() {
       <div class="row">
         <h3>{{ ownPhrases ? 'Haftaning iboralari' : 'Barcha iboralar — takrorlash' }}</h3>
         <span class="spacer" />
-        <RouterLink :to="{ path: '/phrases', query: { week: week.number, tab: 'cards' } }" class="btn sm">
+        <RouterLink
+          :to="{ path: '/phrases', query: { week: week.number, tab: 'cards' } }"
+          class="btn sm"
+        >
           Flashcards →
         </RouterLink>
       </div>
@@ -134,6 +148,9 @@ function onNote() {
 }
 .day-nav h1 {
   margin: 0;
+}
+.day-nav .date {
+  margin: 2px 0 0;
 }
 .summary {
   display: flex;
