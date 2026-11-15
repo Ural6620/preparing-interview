@@ -202,7 +202,25 @@ export default {
           q: 'Can you explain the cache-aside pattern?',
           a: "In cache-aside, the application checks the cache first. If the data is in the cache, it returns it. If not, it reads from the database, saves the result in the cache, and returns it. When the data changes, we update the database and delete the cache key.",
           uz: "Cache-aside'da ilova avval cache'ni tekshiradi. Agar ma'lumot cache'da bo'lsa, uni qaytaradi. Bo'lmasa, database'dan o'qiydi, natijani cache'ga saqlaydi va qaytaradi. Ma'lumot o'zgarganda database'ni yangilaymiz va cache key'ni o'chiramiz.",
-          example: "async function getUser(id) {\n  const cached = await redis.get(`user:${id}`)\n  if (cached) return JSON.parse(cached)\n  const user = await db.findUserById(id)\n  await redis.set(`user:${id}`, JSON.stringify(user), 'EX', 300)\n  return user\n}",
+          example: `// Spring Boot + Redis (RedisTemplate<String, UserDto>)
+public UserDto getUser(long id) {
+    String key = "user:" + id;
+    UserDto cached = redis.opsForValue().get(key);
+    if (cached != null) return cached;                  // cache hit
+
+    UserDto user = userRepository.findById(id)          // cache miss -> database
+            .map(UserDto::from)
+            .orElseThrow(() -> new NotFoundException("User " + id + " not found"));
+    redis.opsForValue().set(key, user, Duration.ofMinutes(5)); // TTL 5 min
+    return user;
+}
+
+// The same idea with Spring Cache annotations:
+@Cacheable(cacheNames = "users", key = "#id")
+public UserDto findUser(long id) { ... }
+
+@CacheEvict(cacheNames = "users", key = "#id")         // delete the key on update
+public void updateUser(long id, UpdateUserRequest request) { ... }`,
           followUp: 'What other caching patterns do you know?',
           level: 'middle',
         },
@@ -241,9 +259,10 @@ export default {
       id: 'sd-queues',
       title: 'Message queue va async processing',
       days: [58, 62, 63],
-      summary: "Message queue — bir servis xabar (job) qo'yadigan, boshqa servis (worker) esa uni keyinroq olib bajaradigan navbat. Sekin ishlarni (email yuborish, rasm o'lchamini o'zgartirish, report yaratish) request ichida emas, background'da bajarish uchun ishlatiladi — foydalanuvchi darhol javob oladi. Xabarni qo'yadigan tomon producer, oladigan tomon consumer deyiladi. Queue servis'larni bir-biridan ajratadi (decoupling) va traffic keskin oshganda bufer vazifasini bajaradi. Mashhur tool'lar: RabbitMQ, Kafka, AWS SQS, Node.js'da Redis asosidagi BullMQ.",
+      summary: "Message queue — bir servis xabar (job) qo'yadigan, boshqa servis (worker) esa uni keyinroq olib bajaradigan navbat. Sekin ishlarni (email yuborish, rasm o'lchamini o'zgartirish, report yaratish) request ichida emas, background'da bajarish uchun ishlatiladi — foydalanuvchi darhol javob oladi. Xabarni qo'yadigan tomon producer, oladigan tomon consumer deyiladi. Queue servis'larni bir-biridan ajratadi (decoupling) va traffic keskin oshganda bufer vazifasini bajaradi. Mashhur tool'lar: RabbitMQ, Kafka, AWS SQS; oddiy holatlarda Redis asosidagi queue (Redis Streams yoki list) ham yetarli. Spring Boot'da RabbitMQ bilan Spring AMQP (RabbitTemplate + @RabbitListener), Kafka bilan Spring for Apache Kafka (KafkaTemplate + @KafkaListener) ishlatiladi.",
       keyPoints: [
         "Producer → queue → consumer (worker)",
+        "Spring Boot: rabbitTemplate.convertAndSend(...) → @RabbitListener; kafkaTemplate.send(...) → @KafkaListener",
         "Sekin ishni background'ga o'tkaz: user darhol javob oladi (masalan 202 Accepted)",
         "Decoupling — servislar bir-birini kutmaydi; biri ishlamay qolsa, boshqasi ishlayveradi",
         "Acknowledgement + retry; ko'p marta xato bergan xabar → dead-letter queue",
@@ -264,7 +283,7 @@ export default {
           q: 'What is a message queue?',
           a: "A message queue is a buffer between services. One service, the producer, puts messages into the queue. Another service, the consumer, reads them and processes them later. This way, the two services don't need to wait for each other.",
           uz: "Message queue — servis'lar orasidagi bufer. Bir servis, ya'ni producer, xabarlarni queue'ga qo'yadi. Boshqa servis, ya'ni consumer, ularni o'qiydi va keyinroq qayta ishlaydi. Shunday qilib, ikki servis bir-birini kutishi shart emas.",
-          example: "Examples: RabbitMQ, Kafka, AWS SQS, BullMQ",
+          example: "Examples: RabbitMQ, Kafka, AWS SQS, Redis-based queues (Redis Streams)\nSpring Boot: RabbitTemplate + @RabbitListener, KafkaTemplate + @KafkaListener",
           level: 'junior',
         },
         {
@@ -546,11 +565,11 @@ export default {
       id: 'sd-scale-task-manager',
       title: "Dizayn: Task manager'ni 1M foydalanuvchiga scale qilish",
       days: [62, 81],
-      summary: "Bu savol sening portfolio loyihang (task manager / mini Trello: Vue yoki React + Node + PostgreSQL) haqida: 'Agar 1 million foydalanuvchi bo'lsa, nimani o'zgartirasan?' Asosiy g'oya — hammasini birdan o'zgartirmaslik, balki raqamlardan boshlab bottleneck'ni topish va qadamma-qadam scale qilish. Odatiy yo'l: frontend'ni CDN'ga qo'yish, API server'larni stateless qilib load balancer ortida ko'paytirish, PostgreSQL'ga index, connection pool va read replica qo'shish, tez-tez o'qiladigan board'larni Redis'da cache qilish, sekin ishlarni (email, notification) queue'ga o'tkazish. Har bir qadamning trade-off'ini ayta olish muhim.",
+      summary: "Bu savol sening portfolio loyihang (task manager / mini Trello: Vue yoki React + Spring Boot + PostgreSQL) haqida: 'Agar 1 million foydalanuvchi bo'lsa, nimani o'zgartirasan?' Asosiy g'oya — hammasini birdan o'zgartirmaslik, balki raqamlardan boshlab bottleneck'ni topish va qadamma-qadam scale qilish. Odatiy yo'l: frontend'ni CDN'ga qo'yish, API server'larni stateless qilib load balancer ortida ko'paytirish, PostgreSQL'ga index, connection pool va read replica qo'shish, tez-tez o'qiladigan board'larni Redis'da cache qilish, sekin ishlarni (email, notification) queue'ga o'tkazish. Har bir qadamning trade-off'ini ayta olish muhim.",
       keyPoints: [
         "Raqamlar: 1M user, ~10% DAU = 100K; har biri ~50 request/kun → 5M/kun ≈ 60 RPS, peak ≈ 200 RPS",
         "Frontend: static build → CDN",
-        "Backend: stateless Node API × N, oldida load balancer; JWT bilan session server xotirasida saqlanmaydi",
+        "Backend: stateless Spring Boot API × N, oldida load balancer; JWT bilan session server xotirasida saqlanmaydi",
         "PostgreSQL: index (tasks.board_id, tasks.assignee_id), connection pool, read replica",
         "Redis: board ma'lumotlari uchun cache, rate limiting",
         "Queue: email, notification, fayl qayta ishlash — background worker",
@@ -574,8 +593,8 @@ export default {
         },
         {
           q: 'How much traffic do you expect?',
-          a: "Let's say 10% of users are active every day, so we have 100,000 daily users. If each user makes about 50 requests a day, that is 5 million requests per day. That is about 60 requests per second on average, and maybe 200 at peak. A few Node servers with a good database can handle this, so we can scale step by step.",
-          uz: "Aytaylik, foydalanuvchilarning 10% har kuni faol, ya'ni kuniga 100 000 foydalanuvchi. Agar har biri kuniga taxminan 50 ta request yuborsa, bu kuniga 5 million request. Bu o'rtacha soniyasiga taxminan 60 ta request, eng yuqori paytda esa 200 tacha. Bir nechta Node server va yaxshi database buni ko'tara oladi, shuning uchun qadamma-qadam scale qilishimiz mumkin.",
+          a: "Let's say 10% of users are active every day, so we have 100,000 daily users. If each user makes about 50 requests a day, that is 5 million requests per day. That is about 60 requests per second on average, and maybe 200 at peak. A few Spring Boot servers with a good database can handle this, so we can scale step by step.",
+          uz: "Aytaylik, foydalanuvchilarning 10% har kuni faol, ya'ni kuniga 100 000 foydalanuvchi. Agar har biri kuniga taxminan 50 ta request yuborsa, bu kuniga 5 million request. Bu o'rtacha soniyasiga taxminan 60 ta request, eng yuqori paytda esa 200 tacha. Bir nechta Spring Boot server va yaxshi database buni ko'tara oladi, shuning uchun qadamma-qadam scale qilishimiz mumkin.",
           example: "100K DAU × 50 requests = 5M/day ÷ 86,400 s ≈ 58 RPS (peak ≈ 3× → ~180 RPS)",
           level: 'middle',
         },

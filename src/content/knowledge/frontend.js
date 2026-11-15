@@ -744,8 +744,18 @@ import _ from 'lodash'                // whole library`,
           q: 'What is CORS?',
           a: "CORS means Cross-Origin Resource Sharing. By default, the browser blocks JavaScript from reading responses from another origin. An origin is the protocol, domain and port. The server can allow it with headers like Access-Control-Allow-Origin. So we fix CORS errors on the server, not in the frontend. Tools like Postman don't have CORS, because it is a browser rule.",
           uz: "CORS — Cross-Origin Resource Sharing. Default holatda brauzer JavaScript'ga boshqa origin'dan kelgan javoblarni o'qishga ruxsat bermaydi. Origin — protocol, domain va port. Server buni Access-Control-Allow-Origin kabi header'lar bilan ruxsat berishi mumkin. Shuning uchun CORS xatolarini frontend'da emas, serverda tuzatamiz. Postman kabi vositalarda CORS yo'q, chunki bu brauzer qoidasi.",
-          example: `// Express server
-app.use(cors({ origin: 'https://app.example.com', credentials: true }))
+          example: `// Spring Boot server (with Spring Security: http.cors(Customizer.withDefaults()))
+@Bean
+CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowedOrigins(List.of("https://app.example.com"));
+    config.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE"));
+    config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+    config.setAllowCredentials(true);
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/api/**", config);
+    return source;
+}
 
 // Response headers
 Access-Control-Allow-Origin: https://app.example.com

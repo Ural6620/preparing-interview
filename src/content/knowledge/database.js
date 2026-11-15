@@ -434,10 +434,31 @@ export default {
           level: 'middle',
         },
         {
-          q: 'How do you use a transaction in Node.js with PostgreSQL?',
-          a: "I take one client from the pool, because all queries of a transaction must use the same connection. I run BEGIN, then the queries, then COMMIT. If there is an error, I run ROLLBACK in the catch block. In the finally block, I release the client back to the pool.",
-          uz: "Pool'dan bitta client olaman, chunki transaction'ning barcha query'lari bitta ulanishdan foydalanishi kerak. BEGIN, keyin query'lar, keyin COMMIT bajaraman. Xato bo'lsa, catch blokida ROLLBACK bajaraman. finally blokida client'ni pool'ga qaytaraman.",
-          example: "const client = await pool.connect()\ntry {\n  await client.query('BEGIN')\n  await client.query('UPDATE accounts SET balance = balance - $1 WHERE id = $2', [100, 1])\n  await client.query('UPDATE accounts SET balance = balance + $1 WHERE id = $2', [100, 2])\n  await client.query('COMMIT')\n} catch (err) {\n  await client.query('ROLLBACK')\n  throw err\n} finally {\n  client.release()\n}",
+          q: 'How do you use a transaction in Spring Boot with PostgreSQL?',
+          a: "In Spring Boot, I usually put @Transactional on a service method. Spring opens a transaction before the method starts, and all queries inside use the same connection from the pool. If the method finishes normally, Spring commits. If it throws a runtime exception, Spring rolls back. I keep transactions short and I do not call slow external APIs inside them.",
+          uz: "Spring Boot'da odatda service metodiga @Transactional qo'yaman. Spring metod boshlanishidan oldin transaction ochadi va ichidagi barcha query'lar pool'dagi bitta ulanishdan foydalanadi. Metod normal tugasa, Spring commit qiladi. Agar u runtime exception tashlasa, Spring rollback qiladi. Transaction'larni qisqa tutaman va ularning ichida sekin tashqi API'larni chaqirmayman.",
+          example: `@Service
+public class TransferService {
+    private final AccountRepository accounts;
+
+    public TransferService(AccountRepository accounts) {
+        this.accounts = accounts;
+    }
+
+    @Transactional // BEGIN ... COMMIT, or ROLLBACK on a RuntimeException
+    public void transfer(long fromId, long toId, BigDecimal amount) {
+        Account from = accounts.findById(fromId).orElseThrow();
+        Account to = accounts.findById(toId).orElseThrow();
+        from.withdraw(amount); // throws if the balance is too low -> rollback
+        to.deposit(amount);
+        // no save() needed: JPA dirty checking sends the UPDATEs at commit
+    }
+}
+
+// Without JPA: JdbcTemplate calls inside the same @Transactional method
+jdbcTemplate.update("UPDATE accounts SET balance = balance - ? WHERE id = ?", amount, fromId);
+jdbcTemplate.update("UPDATE accounts SET balance = balance + ? WHERE id = ?", amount, toId);`,
+          followUp: 'Why does @Transactional not work when you call the method from the same class?',
           level: 'middle',
         },
         {
@@ -460,12 +481,12 @@ export default {
       id: 'db-n-plus-one',
       title: 'N+1 query muammosi va yechimi',
       days: [47, 48, 49],
-      summary: "N+1 muammosi — bitta query bilan N ta yozuvni olib, keyin har biri uchun alohida yana bitta query yuborish: jami 1 + N ta query. Masalan, 50 ta board'ni olib, har bir board'ning task'larini alohida so'rash — 51 ta query. Bu ko'pincha ORM'lardagi lazy loading tufayli sezilmasdan yuz beradi va ma'lumot ko'payganda sahifa sekinlashadi. Yechimlar: JOIN, ORM'da eager loading (include / with), barcha id'lar uchun bitta WHERE id IN (...) query, GraphQL'da DataLoader. Aniqlash uchun query log'larini yoqamiz yoki bitta request'da nechta query ketayotganini sanaymiz.",
+      summary: "N+1 muammosi — bitta query bilan N ta yozuvni olib, keyin har biri uchun alohida yana bitta query yuborish: jami 1 + N ta query. Masalan, 50 ta board'ni olib, har bir board'ning task'larini alohida so'rash — 51 ta query. Bu ko'pincha ORM'lardagi lazy loading tufayli sezilmasdan yuz beradi va ma'lumot ko'payganda sahifa sekinlashadi. Yechimlar: JOIN, ORM'da eager loading (JPA/Hibernate'da JOIN FETCH yoki @EntityGraph), barcha id'lar uchun bitta WHERE id IN (...) query, GraphQL'da DataLoader. Aniqlash uchun query log'larini yoqamiz yoki bitta request'da nechta query ketayotganini sanaymiz.",
       keyPoints: [
         "1 ta ro'yxat query + har bir element uchun 1 tadan = N+1 query",
-        "Sababi ko'pincha ORM'dagi lazy loading yoki sikl ichidagi await",
+        "Sababi ko'pincha JPA/Hibernate'dagi lazy loading (sikl ichida board.getTasks()) yoki sikl ichidagi query",
         "Yechim 1: JOIN bilan bitta query",
-        "Yechim 2: eager loading (Prisma include, Sequelize include, TypeORM relations)",
+        "Yechim 2: JPA'da JOIN FETCH yoki @EntityGraph; yoki Hibernate batch fetching (default_batch_fetch_size)",
         "Yechim 3: batch — WHERE board_id IN (...) yoki = ANY($1), keyin kodda guruhlash",
         "GraphQL'da DataLoader bir xil turdagi so'rovlarni batch qiladi",
         "Aniqlash: query log, APM, request boshiga query soni",
@@ -483,20 +504,42 @@ export default {
           q: 'What is the N+1 query problem?',
           a: "The N+1 problem happens when we run one query to get a list, and then one more query for each item in the list. For example, we load 50 boards and then load tasks for each board separately. That is 51 queries instead of one or two. Each query is a round trip to the database, so the page becomes slow.",
           uz: "N+1 muammosi ro'yxatni olish uchun bitta query, keyin ro'yxatdagi har bir element uchun yana bittadan query yuborganimizda yuz beradi. Masalan, 50 ta board'ni yuklaymiz, keyin har bir board uchun task'larni alohida yuklaymiz. Bu bitta yoki ikkita o'rniga 51 ta query. Har bir query database'ga borib-kelish, shuning uchun sahifa sekinlashadi.",
-          example: "// N+1: 1 + N queries\nconst boards = await db.query('SELECT * FROM boards WHERE user_id = $1', [userId])\nfor (const board of boards.rows) {\n  const tasks = await db.query('SELECT * FROM tasks WHERE board_id = $1', [board.id])\n  board.tasks = tasks.rows\n}",
+          example: `// N+1 with JPA: 1 query for boards + 1 query per board (lazy @OneToMany)
+List<Board> boards = boardRepository.findByOwnerId(userId); // 1 query
+for (Board board : boards) {
+    int count = board.getTasks().size();                    // +1 query for EACH board
+}
+
+// Hibernate SQL log:
+// select ... from boards b where b.owner_id=?
+// select ... from tasks t where t.board_id=?   <- repeated N times`,
           level: 'junior',
         },
         {
           q: 'How do you fix the N+1 problem?',
-          a: "There are a few ways. I can use a JOIN and get everything in one query. In an ORM, I use eager loading, like include in Prisma. Or I load all children in one query with WHERE board_id IN the list of ids, and then group them in code. In all cases, the number of queries does not grow with the data.",
-          uz: "Bir necha usul bor. JOIN ishlatib, hammasini bitta query'da olishim mumkin. ORM'da eager loading ishlataman, masalan Prisma'dagi include. Yoki barcha bola yozuvlarni WHERE board_id IN id'lar ro'yxati bilan bitta query'da yuklayman va keyin kodda guruhlayman. Har qanday holatda query'lar soni ma'lumot bilan birga o'smaydi.",
-          example: "// 2 queries total\nconst boards = (await db.query('SELECT * FROM boards WHERE user_id = $1', [userId])).rows\nconst ids = boards.map((b) => b.id)\nconst tasks = (await db.query('SELECT * FROM tasks WHERE board_id = ANY($1)', [ids])).rows\n\nfor (const board of boards) {\n  board.tasks = tasks.filter((t) => t.board_id === board.id)\n}\n\n// Prisma: eager loading\nconst boardsWithTasks = await prisma.board.findMany({\n  where: { userId },\n  include: { tasks: true },\n})",
+          a: "There are a few ways. I can use a JOIN and get everything in one query. With JPA, I use eager loading for this query: JOIN FETCH in JPQL or @EntityGraph on the repository method. Or I load all children in one query with WHERE board_id IN the list of ids, and then group them in code. In all cases, the number of queries does not grow with the data.",
+          uz: "Bir necha usul bor. JOIN ishlatib, hammasini bitta query'da olishim mumkin. JPA'da shu query uchun eager loading ishlataman: JPQL'da JOIN FETCH yoki repository metodida @EntityGraph. Yoki barcha bola yozuvlarni WHERE board_id IN id'lar ro'yxati bilan bitta query'da yuklayman va keyin kodda guruhlayman. Har qanday holatda query'lar soni ma'lumot bilan birga o'smaydi.",
+          example: `public interface BoardRepository extends JpaRepository<Board, Long> {
+
+    // 1) JOIN FETCH: boards and their tasks in ONE query
+    @Query("select distinct b from Board b left join fetch b.tasks where b.ownerId = :ownerId")
+    List<Board> findWithTasksByOwnerId(@Param("ownerId") Long ownerId);
+
+    // 2) @EntityGraph: the same idea without writing JPQL
+    @EntityGraph(attributePaths = "tasks")
+    List<Board> findAllByOwnerId(Long ownerId);
+}
+
+// 3) Batch fetching: Hibernate loads tasks for many boards at once
+//    (select ... from tasks where board_id in (?, ?, ?, ...))
+// application.yml:
+// spring.jpa.properties.hibernate.default_batch_fetch_size: 50`,
           level: 'junior',
         },
         {
           q: 'How do you find N+1 problems in a project?',
-          a: "I turn on query logging in the ORM or the database and look at one request. If I see the same query many times with different ids, it is N+1. APM tools can also show the number of queries per request. In tests, I can count queries and fail the test if there are too many.",
-          uz: "ORM yoki database'da query logging'ni yoqaman va bitta request'ga qarayman. Bir xil query turli id'lar bilan ko'p marta takrorlansa, bu N+1. APM vositalari ham har bir request uchun query'lar sonini ko'rsata oladi. Testlarda query'larni sanab, juda ko'p bo'lsa testni yiqitishim mumkin.",
+          a: "I turn on SQL logging in Hibernate, for example the org.hibernate.SQL logger, or in the database, and look at one request. If I see the same query many times with different ids, it is N+1. APM tools can also show the number of queries per request. In tests, I can count queries and fail the test if there are too many.",
+          uz: "Hibernate'da, masalan org.hibernate.SQL logger'i orqali, yoki database'da SQL logging'ni yoqaman va bitta request'ga qarayman. Bir xil query turli id'lar bilan ko'p marta takrorlansa, bu N+1. APM vositalari ham har bir request uchun query'lar sonini ko'rsata oladi. Testlarda query'larni sanab, juda ko'p bo'lsa testni yiqitishim mumkin.",
           level: 'middle',
         },
         {
@@ -515,7 +558,8 @@ export default {
       ],
       resources: [
         { title: 'PostgreSQL — Using EXPLAIN', url: 'https://www.postgresql.org/docs/current/using-explain.html' },
-        { title: 'Prisma Docs', url: 'https://www.prisma.io/docs' },
+        { title: 'Spring Data JPA — Entity Graphs', url: 'https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html#jpa.entity-graph' },
+        { title: 'Hibernate ORM — User Guide (Fetching)', url: 'https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html#fetching' },
       ],
     },
 
@@ -657,14 +701,14 @@ CREATE INDEX idx_tasks_assignee_id ON tasks (assignee_id);`,
           q: 'How do you store money in a database?',
           a: "I never use FLOAT for money, because floating point numbers have rounding errors. I use NUMERIC with a fixed scale, like NUMERIC(10, 2). Another common way is to store an integer in the smallest unit, like cents. I also store the currency if the app supports more than one.",
           uz: "Pul uchun hech qachon FLOAT ishlatmayman, chunki floating point sonlarda yaxlitlash xatolari bor. NUMERIC(10, 2) kabi qat'iy aniqlikdagi NUMERIC ishlataman. Yana bir keng tarqalgan usul — eng kichik birlikda, masalan cent'da, butun son saqlash. Ilova bir nechta valyutani qo'llasa, valyutani ham saqlayman.",
-          example: "-- JavaScript: 0.1 + 0.2 === 0.30000000000000004\nprice NUMERIC(10, 2) NOT NULL\n-- or\nprice_cents INTEGER NOT NULL",
+          example: "-- Java (double) va JavaScript: 0.1 + 0.2 = 0.30000000000000004\n-- Java'da pul uchun BigDecimal, PostgreSQL'da NUMERIC\nprice NUMERIC(10, 2) NOT NULL\n-- or\nprice_cents INTEGER NOT NULL",
           level: 'junior',
         },
       ],
       resources: [
         { title: 'PostgreSQL — Constraints', url: 'https://www.postgresql.org/docs/current/ddl-constraints.html' },
         { title: 'PostgreSQL — Data Types', url: 'https://www.postgresql.org/docs/current/datatype.html' },
-        { title: 'Prisma Docs', url: 'https://www.prisma.io/docs' },
+        { title: 'Spring Data JPA — Reference', url: 'https://docs.spring.io/spring-data/jpa/reference/' },
       ],
     },
   ],

@@ -234,6 +234,7 @@ export default {
         "AAA: Arrange → Act → Assert",
         "Yaxshi test: tez, mustaqil, takrorlanadigan, implementatsiyani emas, xulq-atvorni (behavior) tekshiradi",
         "TDD: red → green → refactor",
+        "Backend (Spring Boot): JUnit 5 + Mockito (unit), @WebMvcTest / @SpringBootTest + Testcontainers (integration); frontend: Vitest + Vue Test Utils",
         "Coverage — foydali ko'rsatkich, lekin 100% coverage bug yo'q degani emas",
       ],
       vocab: [
@@ -263,13 +264,30 @@ export default {
           q: 'What is mocking and when do you use it?',
           a: "Mocking means we replace a real dependency with a fake one in a test. For example, we mock an HTTP request, the database or the current date. This makes the test fast and stable, and we can test error cases easily. But I do not mock too much, because then the test does not check real behavior.",
           uz: "Mocking — testda haqiqiy bog'liqlikni soxtasi bilan almashtirish. Masalan, HTTP request'ni, database'ni yoki joriy sanani mock qilamiz. Bu testni tez va barqaror qiladi, xato holatlarni ham oson tekshira olamiz. Lekin juda ko'p mock qilmayman, chunki unda test haqiqiy xulq-atvorni tekshirmaydi.",
-          example: "import { vi, test, expect } from 'vitest'\nimport { getUserName } from './user'\n\ntest('returns user name from API', async () => {\n  // Arrange\n  global.fetch = vi.fn().mockResolvedValue({\n    json: () => Promise.resolve({ name: 'Ali' }),\n  })\n  // Act\n  const name = await getUserName(1)\n  // Assert\n  expect(name).toBe('Ali')\n  expect(fetch).toHaveBeenCalledWith('/api/users/1')\n})",
+          example: "import { vi, test, expect } from 'vitest'\nimport { getUserName } from './user'\n\ntest('returns user name from API', async () => {\n  // Arrange\n  global.fetch = vi.fn().mockResolvedValue({\n    json: () => Promise.resolve({ name: 'Ali' }),\n  })\n  // Act\n  const name = await getUserName(1)\n  // Assert\n  expect(name).toBe('Ali')\n  expect(fetch).toHaveBeenCalledWith('/api/users/1')\n})\n\n// Backend: JUnit 5 + Mockito\n@ExtendWith(MockitoExtension.class)\nclass UserServiceTest {\n  @Mock UserRepository repository;\n  @InjectMocks UserService service;\n\n  @Test\n  void returnsUserName() {\n    when(repository.findById(1L)).thenReturn(Optional.of(new User(1L, \"Ali\")));\n    assertEquals(\"Ali\", service.getUserName(1L));\n    verify(repository).findById(1L);\n  }\n}",
           level: 'junior',
         },
         {
           q: 'How do you test your code?',
-          a: "I write unit tests for business logic and helper functions, usually with Vitest or Jest. For the backend, I write integration tests for the main API endpoints with a test database. For the most important user flows, like login and checkout, we have a few e2e tests. All tests run in CI on every pull request.",
-          uz: "Biznes mantiq va yordamchi funksiyalar uchun unit testlar yozaman, odatda Vitest yoki Jest bilan. Backend uchun asosiy API endpoint'larga test database bilan integration testlar yozaman. Eng muhim foydalanuvchi oqimlari, masalan login va checkout uchun, bir nechta e2e testimiz bor. Barcha testlar har bir pull request'da CI'da ishlaydi.",
+          a: "On the backend, I write unit tests for business logic with JUnit 5 and Mockito. For the main API endpoints, I write integration tests with Spring Boot test tools, like MockMvc, and a real PostgreSQL in Testcontainers. On the frontend, I test components and helper functions with Vitest. For the most important user flows, like login and checkout, we have a few e2e tests. All tests run in CI on every pull request.",
+          uz: "Backend'da biznes mantiq uchun JUnit 5 va Mockito bilan unit testlar yozaman. Asosiy API endpoint'lar uchun MockMvc kabi Spring Boot test vositalari va Testcontainers'dagi haqiqiy PostgreSQL bilan integration testlar yozaman. Frontend'da komponentlar va yordamchi funksiyalarni Vitest bilan test qilaman. Eng muhim foydalanuvchi oqimlari, masalan login va checkout uchun, bir nechta e2e testimiz bor. Barcha testlar har bir pull request'da CI'da ishlaydi.",
+          example: `// Backend unit test: JUnit 5 + Mockito
+@ExtendWith(MockitoExtension.class)
+class TaskServiceTest {
+    @Mock TaskRepository repository;
+    @InjectMocks TaskService service;
+
+    @Test
+    void throwsNotFoundForUnknownTask() {
+        when(repository.findById(42L)).thenReturn(Optional.empty());
+        assertThrows(NotFoundException.class, () -> service.get(42L));
+    }
+}
+
+// Frontend unit test: Vitest
+test('formats the due date', () => {
+  expect(formatDate('2026-11-14')).toBe('14 Nov 2026')
+})`,
           level: 'junior',
         },
         {
@@ -295,6 +313,9 @@ export default {
       ],
       resources: [
         { title: 'Martin Fowler — The Practical Test Pyramid', url: 'https://martinfowler.com/articles/practical-test-pyramid.html' },
+        { title: 'JUnit 5 — User Guide', url: 'https://junit.org/junit5/docs/current/user-guide/' },
+        { title: 'Mockito', url: 'https://site.mockito.org/' },
+        { title: 'Spring Boot — Testing', url: 'https://docs.spring.io/spring-boot/reference/testing/index.html' },
         { title: 'Vitest — Getting Started', url: 'https://vitest.dev/guide/' },
       ],
     },
@@ -531,13 +552,13 @@ export default {
       id: 'eng-debugging',
       title: 'Debugging va kodni tushuntirish',
       days: [23, 25, 26, 27, 28],
-      summary: "Debugging — taxmin qilish emas, tizimli jarayon: muammoni takrorla (reproduce), joyini toraytir, sababini top, tuzat, test bilan tasdiqla. Chrome DevTools'da Sources tab'ida breakpoint qo'yib, kodni qadam-baqadam yurish va o'zgaruvchilar qiymatini ko'rish mumkin; kodda debugger; yozuvi ham shu ishni qiladi. Network tab'ida request URL, status code, header'lar, payload va response ko'rinadi — frontend yoki backend aybdor ekanini birinchi shu yerda aniqlaymiz. Console log tez yordam beradi, production'da esa log'lar va error tracking kerak. Interview'da 'Tell me about a bug you fixed' savoliga STAR tuzilishida (Situation, Task, Action, Result) javob beriladi, kodni tushuntirishda esa 'This function takes... and returns...', 'Let me walk you through the code' kabi iboralar ishlatiladi.",
+      summary: "Debugging — taxmin qilish emas, tizimli jarayon: muammoni takrorla (reproduce), joyini toraytir, sababini top, tuzat, test bilan tasdiqla. Chrome DevTools'da Sources tab'ida breakpoint qo'yib, kodni qadam-baqadam yurish va o'zgaruvchilar qiymatini ko'rish mumkin; kodda debugger; yozuvi ham shu ishni qiladi. Backend'da (Java/Spring Boot) xuddi shu ishni IntelliJ IDEA debugger'i qiladi: breakpoint, step over/into, Evaluate Expression; serverdagi yoki Docker'dagi ilovaga remote debug (JDWP) orqali ulanish mumkin. Network tab'ida request URL, status code, header'lar, payload va response ko'rinadi — frontend yoki backend aybdor ekanini birinchi shu yerda aniqlaymiz. Console log tez yordam beradi, production'da esa log'lar va error tracking kerak. Interview'da 'Tell me about a bug you fixed' savoliga STAR tuzilishida (Situation, Task, Action, Result) javob beriladi, kodni tushuntirishda esa 'This function takes... and returns...', 'Let me walk you through the code' kabi iboralar ishlatiladi.",
       keyPoints: [
         "Qadamlar: reproduce → isolate → find root cause → fix → test qo'sh",
         "Breakpoint (Sources tab yoki debugger;) — kodni to'xtatib, o'zgaruvchilarni ko'rish, step over/into",
         "Network tab: status code, request payload, response, CORS xatolar, timing",
         "Console: console.log, console.table, console.error; Elements — DOM va CSS",
-        "Backend: log'lar, Node --inspect, stack trace'ni pastdan yuqoriga emas, birinchi qatoridan o'qi",
+        "Backend (Java): log'lar, IntelliJ IDEA debugger (breakpoint, Evaluate Expression), remote debug (-agentlib:jdwp); stack trace'ni birinchi qatoridan va 'Caused by' qismidan o'qi",
         "Bug tuzatilgach — qayta chiqmasligi uchun test yoz",
         "Bug hikoyasi: Situation → Task → Action → Result (raqam bilan)",
       ],

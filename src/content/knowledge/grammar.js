@@ -29,7 +29,7 @@ export default {
         { en: 'it handles…', uz: 'u … ni boshqaradi / qayta ishlaydi' },
       ],
       questions: [
-        { q: 'Men Vue va Node.js bilan ishlayman.', a: 'I work with Vue and Node.js.', uz: "\"I am work\" emas — present simple'da am kerak emas.", level: 'junior' },
+        { q: 'Men Vue va Spring Boot bilan ishlayman.', a: 'I work with Vue and Spring Boot.', uz: "\"I am work\" emas — present simple'da am kerak emas.", level: 'junior' },
         { q: 'Jamoamiz PostgreSQL ishlatadi.', a: 'Our team uses PostgreSQL.', uz: 'team = it → uses (-s bilan).', level: 'junior' },
         { q: "Bu funksiya null qaytarmaydi.", a: "This function doesn't return null.", uz: "doesn't + fe'l -s'siz: return.", level: 'junior' },
         { q: 'Siz TypeScript ishlatasizmi?', a: 'Do you use TypeScript?', uz: 'Savol: Do + you + fe\'l.', level: 'junior' },

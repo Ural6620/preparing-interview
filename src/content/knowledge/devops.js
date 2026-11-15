@@ -8,15 +8,16 @@ export default {
       id: 'ops-docker-basics',
       title: 'Docker: image, container, Dockerfile',
       days: [50, 51],
-      summary: "Docker ilovani kerakli hamma narsasi (runtime, kutubxonalar, config) bilan bitta paketga o'raydi, shuning uchun u har qanday mashinada bir xil ishlaydi. Image — o'zgarmas shablon (read-only), container esa shu image'dan ishga tushirilgan jarayon. Image layer'lardan iborat: Dockerfile'dagi har bir instruksiya (FROM, COPY, RUN) yangi layer yaratadi va Docker ularni cache qiladi. Shuning uchun avval package.json'ni ko'chirib npm ci qilinadi, keyin qolgan kod — kod o'zgarsa ham dependency layer cache'dan olinadi. Multi-stage build'da bitta bosqichda build qilinadi, oxirgi image'ga esa faqat natija (dist) ko'chiriladi — image kichik va xavfsizroq bo'ladi. Container virtual machine emas: u host'ning kernel'idan foydalanadi, shuning uchun yengil va tez ishga tushadi.",
+      summary: "Docker ilovani kerakli hamma narsasi (runtime, kutubxonalar, config) bilan bitta paketga o'raydi, shuning uchun u har qanday mashinada bir xil ishlaydi. Image — o'zgarmas shablon (read-only), container esa shu image'dan ishga tushirilgan jarayon. Image layer'lardan iborat: Dockerfile'dagi har bir instruksiya (FROM, COPY, RUN) yangi layer yaratadi va Docker ularni cache qiladi. Shuning uchun Spring Boot loyihasida avval faqat pom.xml ko'chirilib, mvn dependency:go-offline bilan dependency'lar yuklanadi, keyin qolgan kod (src) — kod o'zgarsa ham dependency layer cache'dan olinadi. Multi-stage build'da birinchi bosqichda Maven + JDK bilan jar build qilinadi, oxirgi image'ga esa faqat JRE va tayyor jar ko'chiriladi — image kichik va xavfsizroq bo'ladi (Vue frontend uchun ham xuddi shunday: package.json + npm ci, keyin nginx'ga faqat dist). Container virtual machine emas: u host'ning kernel'idan foydalanadi, shuning uchun yengil va tez ishga tushadi.",
       keyPoints: [
         "Image — shablon (class kabi), container — uning ishlayotgan nusxasi (object kabi)",
         "Har bir Dockerfile instruksiyasi — yangi layer; layer'lar cache qilinadi va image'lar orasida bo'lishiladi",
-        "Kam o'zgaradigan narsalarni (package.json, npm ci) tepaga, ko'p o'zgaradigan kodni pastga yoz — cache yaxshi ishlaydi",
+        "Kam o'zgaradigan narsalarni (pom.xml + mvn dependency:go-offline; frontend'da package.json + npm ci) tepaga, ko'p o'zgaradigan kodni pastga yoz — cache yaxshi ishlaydi",
         "Multi-stage build: build tool'lar final image'ga tushmaydi → image kichikroq va xavfsizroq",
-        ".dockerignore — node_modules, .git, .env'ni image'ga qo'shmaslik uchun",
+        ".dockerignore — target/, .git, .env'ni (frontend'da node_modules'ni ham) image'ga qo'shmaslik uchun",
         "Container — VM emas: o'z OS'i yo'q, host kernel'ini ishlatadi, shuning uchun tez va yengil",
-        "Container'ni root emas, oddiy user (USER node) bilan ishga tushirish yaxshi amaliyot",
+        "Container'ni root emas, oddiy user (masalan USER spring) bilan ishga tushirish yaxshi amaliyot",
+        "Spring Boot runtime image: eclipse-temurin:21-jre (JDK va Maven faqat build bosqichida)",
       ],
       vocab: [
         { en: 'image', uz: "container uchun o'zgarmas shablon" },
@@ -40,7 +41,7 @@ export default {
           q: 'What is the difference between an image and a container?',
           a: "The main difference is simple. An image is a read-only template, and a container is a running instance of it. We build an image once from a Dockerfile. Then we can start many containers from the same image. It is similar to a class and an object.",
           uz: "Asosiy farq shundaki, image — faqat o'qiladigan shablon, container esa shu image'ning ishlayotgan nusxasi. Image'ni Dockerfile'dan bir marta build qilamiz. Keyin bitta image'dan ko'p container ishga tushirishimiz mumkin. Bu class va object'ga o'xshaydi.",
-          example: "docker build -t my-api .        # image yaratish\ndocker run -d -p 3000:3000 my-api  # container ishga tushirish\ndocker ps                         # ishlayotgan container'lar",
+          example: "docker build -t my-api .        # image yaratish\ndocker run -d -p 8080:8080 my-api  # container ishga tushirish\ndocker ps                         # ishlayotgan container'lar",
           level: 'junior',
         },
         {
@@ -51,37 +52,36 @@ export default {
         },
         {
           q: 'What are Docker layers and how does caching work?',
-          a: "Each instruction in a Dockerfile, like COPY or RUN, creates a new layer. Docker caches these layers. If a layer does not change, Docker reuses it from the cache. When one layer changes, all layers after it are rebuilt. So I copy package.json and install dependencies first, and copy the source code later.",
-          uz: "Dockerfile'dagi har bir instruksiya, masalan COPY yoki RUN, yangi layer yaratadi. Docker bu layer'larni cache qiladi. Agar layer o'zgarmasa, Docker uni cache'dan qayta ishlatadi. Bitta layer o'zgarganda, undan keyingi barcha layer'lar qayta build qilinadi. Shuning uchun avval package.json'ni ko'chirib dependency'larni o'rnataman, source kodni esa keyin ko'chiraman.",
-          example: "COPY package*.json ./\nRUN npm ci          # package.json o'zgarmasa — cache'dan\nCOPY . .            # kod o'zgarsa — faqat shu yerdan qayta build",
+          a: "Each instruction in a Dockerfile, like COPY or RUN, creates a new layer. Docker caches these layers. If a layer does not change, Docker reuses it from the cache. When one layer changes, all layers after it are rebuilt. So in a Spring Boot project, I copy pom.xml and download the dependencies first, and copy the source code later.",
+          uz: "Dockerfile'dagi har bir instruksiya, masalan COPY yoki RUN, yangi layer yaratadi. Docker bu layer'larni cache qiladi. Agar layer o'zgarmasa, Docker uni cache'dan qayta ishlatadi. Bitta layer o'zgarganda, undan keyingi barcha layer'lar qayta build qilinadi. Shuning uchun Spring Boot loyihasida avval pom.xml'ni ko'chirib dependency'larni yuklab olaman, source kodni esa keyin ko'chiraman.",
+          example: "COPY pom.xml ./\n# pom.xml o'zgarmasa — bu layer cache'dan olinadi\nRUN mvn -B dependency:go-offline\n# kod o'zgarsa — faqat shu yerdan qayta build\nCOPY src ./src\nRUN mvn -B package -DskipTests",
           level: 'junior',
         },
         {
           q: 'What is a multi-stage build and why is it useful?',
           a: "A multi-stage build uses more than one FROM in one Dockerfile. In the first stage, we install all tools and build the app. In the final stage, we copy only the build result. So the final image is much smaller and does not have build tools or source code. This is also better for security.",
           uz: "Multi-stage build bitta Dockerfile'da bir nechta FROM ishlatadi. Birinchi bosqichda barcha tool'larni o'rnatamiz va ilovani build qilamiz. Oxirgi bosqichda faqat build natijasini ko'chiramiz. Shuning uchun final image ancha kichik bo'ladi va unda build tool'lar yoki source kod bo'lmaydi. Bu xavfsizlik uchun ham yaxshiroq.",
-          example: `# --- Backend (Node.js) ---
-# 1-bosqich: build
-FROM node:20-alpine AS build
+          example: `# --- Backend (Spring Boot, Java 21) ---
+# 1-bosqich: build (Maven + JDK)
+FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
+COPY pom.xml ./
+RUN mvn -B dependency:go-offline        # dependency layer: pom.xml o'zgarmasa cache'dan
+COPY src ./src
+RUN mvn -B package -DskipTests          # testlar CI'da ishlaydi -> target/*.jar
 
-# 2-bosqich: production image
-FROM node:20-alpine
+# 2-bosqich: production image (faqat JRE, Maven va source kod yo'q)
+FROM eclipse-temurin:21-jre
 WORKDIR /app
-ENV NODE_ENV=production
-COPY package*.json ./
-RUN npm ci --omit=dev
-COPY --from=build /app/dist ./dist
-USER node
-EXPOSE 3000
-CMD ["node", "dist/server.js"]
+RUN groupadd --system spring && useradd --system --gid spring spring
+COPY --from=build /app/target/*.jar app.jar
+# root emas, oddiy user
+USER spring
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # --- Frontend (Vue/React) ---
-# FROM node:20-alpine AS build ... RUN npm run build
+# FROM node:20-alpine AS build ... RUN npm ci && npm run build
 # FROM nginx:alpine
 # COPY --from=build /app/dist /usr/share/nginx/html`,
           followUp: 'How do you make a Docker image smaller?',
@@ -89,9 +89,9 @@ CMD ["node", "dist/server.js"]
         },
         {
           q: 'How do you make a Docker image smaller?',
-          a: "First, I use a small base image, like node alpine. Second, I use a multi-stage build, so build tools stay out of the final image. Third, I install only production dependencies. I also add a .dockerignore file for node_modules, .git and .env files.",
-          uz: "Birinchidan, kichik base image ishlataman, masalan node alpine. Ikkinchidan, multi-stage build ishlataman, shunda build tool'lar final image'ga tushmaydi. Uchinchidan, faqat production dependency'larni o'rnataman. Shuningdek, node_modules, .git va .env fayllar uchun .dockerignore fayl qo'shaman.",
-          example: "# .dockerignore\nnode_modules\n.git\n.env\ndist\n*.log",
+          a: "First, I use a small base image. For Spring Boot, I use a JRE image like eclipse-temurin 21 jre, not a full JDK. Second, I use a multi-stage build, so Maven, the JDK and the source code stay out of the final image. Third, I copy only the final jar. I also add a .dockerignore file for target, .git and .env files.",
+          uz: "Birinchidan, kichik base image ishlataman. Spring Boot uchun to'liq JDK emas, eclipse-temurin 21 jre kabi JRE image ishlataman. Ikkinchidan, multi-stage build ishlataman, shunda Maven, JDK va source kod final image'ga tushmaydi. Uchinchidan, faqat tayyor jar'ni ko'chiraman. Shuningdek, target, .git va .env fayllar uchun .dockerignore fayl qo'shaman.",
+          example: "# .dockerignore (Spring Boot backend)\ntarget/\n.git\n.env\n.idea/\n*.log\n\n# frontend'da: node_modules, dist, .git, .env",
           level: 'middle',
         },
         {
@@ -114,8 +114,8 @@ CMD ["node", "dist/server.js"]
       keyPoints: [
         "Volume — container o'chganda ham ma'lumot saqlanadi (DB uchun majburiy)",
         "Named volume — Docker boshqaradi; bind mount — host papkasi container'ga ulanadi",
-        "Compose network ichida service nomi = hostname (DATABASE_URL'da localhost emas, db yoziladi)",
-        "ports: \"3000:3000\" — host:container; port ochilmasa, servis faqat ichki network'da ko'rinadi",
+        "Compose network ichida service nomi = hostname (SPRING_DATASOURCE_URL'da localhost emas, db yoziladi)",
+        "ports: \"8080:8080\" — host:container; port ochilmasa, servis faqat ichki network'da ko'rinadi",
         "depends_on + healthcheck — API faqat DB tayyor bo'lgandan keyin ishga tushadi",
         "docker compose up -d / down / logs -f / exec — eng ko'p ishlatiladigan buyruqlar",
       ],
@@ -151,12 +151,14 @@ services:
   api:
     build: ./backend
     environment:
-      DATABASE_URL: postgres://app:\${DB_PASSWORD}@db:5432/appdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/appdb   # Spring Boot env -> spring.datasource.url
+      SPRING_DATASOURCE_USERNAME: app
+      SPRING_DATASOURCE_PASSWORD: \${DB_PASSWORD}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "3000:3000"
+      - "8080:8080"
 
   web:
     build: ./frontend
@@ -189,7 +191,7 @@ volumes:
           q: 'How do containers talk to each other?',
           a: "Containers communicate through a Docker network. Docker Compose creates one network for all services by default. Inside this network, a container finds another one by its service name. So the backend connects to the database with the host name db, not localhost.",
           uz: "Container'lar Docker network orqali muloqot qiladi. Docker Compose default holatda barcha servislar uchun bitta network yaratadi. Bu network ichida container boshqasini service nomi bilan topadi. Shuning uchun backend database'ga localhost bilan emas, db host nomi bilan ulanadi.",
-          example: "DATABASE_URL=postgres://app:secret@db:5432/appdb\n#                                 ^^ service nomi, localhost emas",
+          example: "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/appdb\n#                                       ^^ service nomi, localhost emas",
           level: 'junior',
         },
         {
@@ -221,7 +223,8 @@ volumes:
         "on: push / pull_request — pipeline'ni nima ishga tushiradi (trigger)",
         "needs: — job'lar ketma-ketligi (deploy faqat test o'tsa)",
         "Secrets — GitHub Settings'da saqlanadi, log'da ko'rinmaydi",
-        "Cache (npm) va parallel job'lar pipeline'ni tezlashtiradi",
+        "Cache (Maven ~/.m2, npm) va parallel job'lar pipeline'ni tezlashtiradi",
+        "Backend: ./mvnw verify (compile + test + package); frontend: npm ci, lint, test, build",
       ],
       vocab: [
         { en: 'pipeline', uz: "avtomatik bosqichlar zanjiri" },
@@ -260,21 +263,39 @@ on:
   pull_request:
 
 jobs:
-  check:
+  backend:                                # Spring Boot (Java 21)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+      - run: ./mvnw -B verify             # compile + unit/integration testlar + jar
+
+  frontend:                               # Vue + TypeScript
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: frontend/package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm test
       - run: npm run build
 
   deploy:
-    needs: check                          # faqat check o'tsa
+    needs: [backend, frontend]            # faqat ikkalasi o'tsa
     if: github.ref == 'refs/heads/main'   # faqat main'da
     runs-on: ubuntu-latest
     steps:
@@ -282,7 +303,7 @@ jobs:
       - name: Build and push image
         run: |
           echo "\${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u \${{ github.actor }} --password-stdin
-          docker build -t ghcr.io/\${{ github.repository }}:\${{ github.sha }} .
+          docker build -t ghcr.io/\${{ github.repository }}:\${{ github.sha }} ./backend
           docker push ghcr.io/\${{ github.repository }}:\${{ github.sha }}
       # keyin: serverga SSH orqali ulanib, docker compose pull && docker compose up -d`,
           level: 'junior',
@@ -302,8 +323,8 @@ jobs:
         },
         {
           q: 'How can you make a slow pipeline faster?',
-          a: "First, I cache dependencies, for example the npm cache. Second, I run independent jobs in parallel, like lint and tests. Third, I use Docker layer caching. I can also run only the tests for the changed parts in big projects.",
-          uz: "Birinchidan, dependency'larni cache qilaman, masalan npm cache. Ikkinchidan, mustaqil job'larni parallel ishga tushiraman, masalan lint va testlarni. Uchinchidan, Docker layer cache'dan foydalanaman. Katta loyihalarda faqat o'zgargan qismlarning testlarini ishga tushirishim ham mumkin.",
+          a: "First, I cache dependencies, for example the Maven cache for the backend and the npm cache for the frontend. Second, I run independent jobs in parallel, like lint and tests. Third, I use Docker layer caching. I can also run only the tests for the changed parts in big projects.",
+          uz: "Birinchidan, dependency'larni cache qilaman, masalan backend uchun Maven cache va frontend uchun npm cache. Ikkinchidan, mustaqil job'larni parallel ishga tushiraman, masalan lint va testlarni. Uchinchidan, Docker layer cache'dan foydalanaman. Katta loyihalarda faqat o'zgargan qismlarning testlarini ishga tushirishim ham mumkin.",
           level: 'middle',
         },
       ],
@@ -345,7 +366,7 @@ jobs:
           q: 'How do you store secrets like database passwords and API keys?',
           a: "Secrets are stored in environment variables, not in the code. Locally, I keep them in a .env file, and this file is in .gitignore. In the repository, we keep only a .env.example file without real values. On the server or in CI, we use GitHub Secrets or a secret manager.",
           uz: "Secret'lar kodda emas, environment variable'larda saqlanadi. Lokal'da ularni .env faylda saqlayman va bu fayl .gitignore'da. Repository'da faqat haqiqiy qiymatlarsiz .env.example fayl turadi. Serverda yoki CI'da GitHub Secrets yoki secret manager ishlatamiz.",
-          example: "// .env (git'da YO'Q)\nDATABASE_URL=postgres://app:secret@localhost:5432/appdb\nJWT_SECRET=...\n\n// kodda\nconst dbUrl = process.env.DATABASE_URL",
+          example: "# .env (git'da YO'Q; docker compose yoki IDE uni environment'ga yuklaydi)\nDB_PASSWORD=secret\nJWT_SECRET=...\n\n# application.yml (Spring Boot environment'dan o'qiydi)\nspring:\n  datasource:\n    url: jdbc:postgresql://localhost:5432/appdb\n    password: ${DB_PASSWORD}\napp:\n  jwt:\n    secret: ${JWT_SECRET}",
           followUp: 'What do you do if a secret is pushed to GitHub by mistake?',
           level: 'junior',
         },
@@ -376,7 +397,7 @@ jobs:
       id: 'ops-nginx-https',
       title: 'nginx, reverse proxy va HTTPS',
       days: [53, 54],
-      summary: "nginx — tez web server va reverse proxy. Reverse proxy foydalanuvchi bilan backend o'rtasida turadi: barcha request'lar avval nginx'ga keladi, u ularni kerakli servisga (masalan /api → Node.js:3000) yo'naltiradi. U static fayllarni (Vue/React build) beradi, HTTPS'ni (SSL termination) hal qiladi, gzip, cache va load balancing qiladi. HTTPS — bu HTTP + TLS: ma'lumot shifrlanadi, sertifikat esa server haqiqatan o'sha domen ekanini isbotlaydi. TLS handshake'da asymmetric shifrlash bilan session kaliti kelishiladi, keyingi trafik esa tezroq symmetric shifrlash bilan boradi. Bepul sertifikatni Let's Encrypt (certbot) beradi.",
+      summary: "nginx — tez web server va reverse proxy. Reverse proxy foydalanuvchi bilan backend o'rtasida turadi: barcha request'lar avval nginx'ga keladi, u ularni kerakli servisga (masalan /api → Spring Boot:8080) yo'naltiradi. U static fayllarni (Vue/React build) beradi, HTTPS'ni (SSL termination) hal qiladi, gzip, cache va load balancing qiladi. HTTPS — bu HTTP + TLS: ma'lumot shifrlanadi, sertifikat esa server haqiqatan o'sha domen ekanini isbotlaydi. TLS handshake'da asymmetric shifrlash bilan session kaliti kelishiladi, keyingi trafik esa tezroq symmetric shifrlash bilan boradi. Bepul sertifikatni Let's Encrypt (certbot) beradi.",
       keyPoints: [
         "Forward proxy — client tomonida; reverse proxy — server tomonida turadi",
         "nginx: static fayllar, /api → backend'ga proxy_pass, SSL termination, gzip, load balancing",
@@ -420,7 +441,7 @@ server {
 
   # Backend API
   location /api/ {
-    proxy_pass http://localhost:3000;
+    proxy_pass http://localhost:8080;   # Spring Boot
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -533,7 +554,7 @@ server {
         "Parol → bcrypt/argon2 (salt + sekin hash); hech qachon plain text yoki MD5",
         "Hamma joyda HTTPS + Secure cookie + HSTS",
         "Validation server'da bo'lishi shart — frontend validation faqat UX uchun",
-        "Least privilege, rate limiting, dependency'larni yangilash (npm audit)",
+        "Least privilege, rate limiting, dependency'larni yangilash (backend: Dependabot / OWASP dependency-check, frontend: npm audit)",
       ],
       vocab: [
         { en: 'vulnerability', uz: "zaiflik" },

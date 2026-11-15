@@ -30,16 +30,16 @@ export default {
       questions: [
         {
           q: 'Tell me about yourself.',
-          a: "I'm a full-stack developer with [X years] of experience. Currently, I work at [company], where I build web applications with [Vue/React] and Node.js. On the backend, I mainly work with Express and PostgreSQL. One project I'm proud of is [project name], where I [main result]. Now I'm looking for a role where I can grow and work on bigger products. That's a quick overview of my background.",
-          uz: "Men [X yil] tajribaga ega full-stack dasturchiman. Hozirda [company]da ishlayman, u yerda [Vue/React] va Node.js bilan web ilovalar quraman. Backend'da asosan Express va PostgreSQL bilan ishlayman. Faxrlanadigan loyihalarimdan biri — [project name], unda men [asosiy natija]. Endi o'sishim va kattaroq mahsulotlar ustida ishlashim mumkin bo'lgan rol qidiryapman. Bu — tajribamning qisqacha ko'rinishi.",
+          a: "I'm a full-stack developer with [X years] of experience. Currently, I work at [company], where I build web applications with [Vue/React] on the frontend and Java with Spring Boot on the backend. For the database, I mainly work with PostgreSQL. One project I'm proud of is [project name], where I [main result]. Now I'm looking for a role where I can grow and work on bigger products. That's a quick overview of my background.",
+          uz: "Men [X yil] tajribaga ega full-stack dasturchiman. Hozirda [company]da ishlayman, u yerda frontend'da [Vue/React], backend'da esa Java va Spring Boot bilan web ilovalar quraman. Database sifatida asosan PostgreSQL bilan ishlayman. Faxrlanadigan loyihalarimdan biri — [project name], unda men [asosiy natija]. Endi o'sishim va kattaroq mahsulotlar ustida ishlashim mumkin bo'lgan rol qidiryapman. Bu — tajribamning qisqacha ko'rinishi.",
           example: "[main result] → e.g. 'made the dashboard load two times faster'",
           followUp: 'Can you tell me more about that project?',
           level: 'junior',
         },
         {
           q: 'Can you briefly introduce yourself?',
-          a: "Sure. I'm a full-stack developer from [city]. I mainly work with [Vue/React], Node.js, and PostgreSQL. I've been working on web applications for [X years]. I enjoy solving real user problems, and I'm currently learning [technology].",
-          uz: "Albatta. Men [city]dan bo'lgan full-stack dasturchiman. Asosan [Vue/React], Node.js va PostgreSQL bilan ishlayman. [X yil]dan beri web ilovalar ustida ishlab kelyapman. Foydalanuvchilarning real muammolarini hal qilish menga yoqadi va hozir [technology]ni o'rganyapman.",
+          a: "Sure. I'm a full-stack developer from [city]. I mainly work with [Vue/React], Java with Spring Boot, and PostgreSQL. I've been working on web applications for [X years]. I enjoy solving real user problems, and I'm currently learning [technology].",
+          uz: "Albatta. Men [city]dan bo'lgan full-stack dasturchiman. Asosan [Vue/React], Java va Spring Boot hamda PostgreSQL bilan ishlayman. [X yil]dan beri web ilovalar ustida ishlab kelyapman. Foydalanuvchilarning real muammolarini hal qilish menga yoqadi va hozir [technology]ni o'rganyapman.",
           level: 'junior',
         },
         {
@@ -64,8 +64,8 @@ export default {
         },
         {
           q: 'What technologies are you most comfortable with?',
-          a: "I'm most comfortable with JavaScript and TypeScript. On the frontend, I mainly use [Vue/React]. On the backend, I work with Node.js and Express, and I use PostgreSQL as a database. I also use [Git and Docker] every day.",
-          uz: "JavaScript va TypeScript'da eng bemalol ishlayman. Frontend'da asosan [Vue/React] ishlataman. Backend'da Node.js va Express bilan ishlayman, database sifatida PostgreSQL ishlataman. Har kuni [Git va Docker]dan ham foydalanaman.",
+          a: "I'm most comfortable with Java and TypeScript. On the frontend, I mainly use [Vue/React] with TypeScript. On the backend, I work with Java and Spring Boot, and I use PostgreSQL as a database. I also use [Git and Docker] every day.",
+          uz: "Java va TypeScript'da eng bemalol ishlayman. Frontend'da asosan TypeScript bilan [Vue/React] ishlataman. Backend'da Java va Spring Boot bilan ishlayman, database sifatida PostgreSQL ishlataman. Har kuni [Git va Docker]dan ham foydalanaman.",
           level: 'junior',
         },
         {
@@ -104,9 +104,9 @@ export default {
       questions: [
         {
           q: 'Tell me about a project you worked on.',
-          a: "The problem was that [who] had no simple way to [do what]. So we built [project name], a web app that allows users to [main features]. I was responsible for [your part]. We used [Vue/React] on the frontend and Node.js with PostgreSQL on the backend, because [reason]. As a result, [result].",
-          uz: "Muammo shunda ediki, [kim]da [nima qilish]ning oddiy yo'li yo'q edi. Shuning uchun biz [project name]ni qurdik — foydalanuvchilarga [asosiy funksiyalar] imkonini beradigan web ilova. Men [sening qisming] uchun javobgar edim. Frontend'da [Vue/React], backend'da PostgreSQL bilan Node.js ishlatdik, chunki [sabab]. Natijada [natija].",
-          example: "Problem: small teams had no simple way to track tasks.\nSolution: a task manager with boards and deadlines.\nTech: Vue + Node.js + PostgreSQL, because the data is relational.\nResult: [N] users / [X] times faster / deployed with CI/CD.",
+          a: "The problem was that [who] had no simple way to [do what]. So we built [project name], a web app that allows users to [main features]. I was responsible for [your part]. We used [Vue/React] on the frontend and Java with Spring Boot and PostgreSQL on the backend, because [reason]. As a result, [result].",
+          uz: "Muammo shunda ediki, [kim]da [nima qilish]ning oddiy yo'li yo'q edi. Shuning uchun biz [project name]ni qurdik — foydalanuvchilarga [asosiy funksiyalar] imkonini beradigan web ilova. Men [sening qisming] uchun javobgar edim. Frontend'da [Vue/React], backend'da Java, Spring Boot va PostgreSQL ishlatdik, chunki [sabab]. Natijada [natija].",
+          example: "Problem: small teams had no simple way to track tasks.\nSolution: a task manager with boards and deadlines.\nTech: Vue + Spring Boot (Java) + PostgreSQL, because the data is relational.\nResult: [N] users / [X] times faster / deployed with CI/CD.",
           followUp: 'What was the hardest part?',
           level: 'junior',
         },
@@ -118,8 +118,8 @@ export default {
         },
         {
           q: 'Why did you choose this tech stack?',
-          a: "We chose PostgreSQL because our data is relational: [users, boards, and tasks] are connected. We chose [Vue/React] because [reason]. We used Node.js, so we could use one language on the frontend and the backend. The trade-off is that Node.js is not the best for CPU-heavy tasks, but that was not a problem for this project.",
-          uz: "PostgreSQL'ni tanladik, chunki ma'lumotlarimiz relational: [foydalanuvchilar, board'lar va task'lar] o'zaro bog'langan. [Vue/React]ni tanladik, chunki [sabab]. Node.js ishlatdik, shunda frontend va backend'da bitta tilni ishlata oldik. Trade-off shundaki, Node.js CPU'ni ko'p talab qiladigan vazifalar uchun eng yaxshisi emas, lekin bu loyiha uchun muammo bo'lmadi.",
+          a: "We chose PostgreSQL because our data is relational: [users, boards, and tasks] are connected. We chose [Vue/React] because [reason]. We used Java with Spring Boot on the backend, because it has a mature ecosystem and strong typing, and it gives us ready tools like Spring Security, Spring Data JPA and validation. It is a very good fit for business apps like ours. The trade-off is more boilerplate code and a slower startup than Node.js, but that was not a problem for this project.",
+          uz: "PostgreSQL'ni tanladik, chunki ma'lumotlarimiz relational: [foydalanuvchilar, board'lar va task'lar] o'zaro bog'langan. [Vue/React]ni tanladik, chunki [sabab]. Backend'da Java va Spring Boot ishlatdik, chunki uning ekotizimi yetuk va tiplash kuchli, hamda u Spring Security, Spring Data JPA va validation kabi tayyor vositalarni beradi. U biznikiga o'xshagan biznes ilovalar uchun juda mos. Trade-off shundaki, Node.js'ga qaraganda boilerplate kod ko'proq va ishga tushishi sekinroq, lekin bu loyiha uchun muammo bo'lmadi.",
           level: 'middle',
         },
         {
@@ -139,8 +139,8 @@ export default {
         },
         {
           q: 'Can you describe the architecture of your project?',
-          a: "At a high level, the project has three parts. The frontend is a single-page app built with [Vue/React]. It talks to a REST API built with Node.js and [Express]. The API stores data in PostgreSQL, and authentication works with [JWT tokens].",
-          uz: "Umumiy ko'rinishda loyiha uch qismdan iborat. Frontend — [Vue/React] bilan qurilgan single-page ilova. U Node.js va [Express] bilan qurilgan REST API bilan gaplashadi. API ma'lumotni PostgreSQL'da saqlaydi, authentication esa [JWT token'lar] bilan ishlaydi.",
+          a: "At a high level, the project has three parts. The frontend is a single-page app built with [Vue/React]. It talks to a REST API built with Java and [Spring Boot]. The API stores data in PostgreSQL, and authentication works with [JWT tokens].",
+          uz: "Umumiy ko'rinishda loyiha uch qismdan iborat. Frontend — [Vue/React] bilan qurilgan single-page ilova. U Java va [Spring Boot] bilan qurilgan REST API bilan gaplashadi. API ma'lumotni PostgreSQL'da saqlaydi, authentication esa [JWT token'lar] bilan ishlaydi.",
           level: 'junior',
         },
         {
@@ -293,8 +293,8 @@ export default {
         },
         {
           q: 'Why should we hire you?',
-          a: "I have [X years] of experience with the same stack you use: [Vue/React], Node.js, and PostgreSQL. I can work on both the frontend and the backend, so I can build a full feature. I learn fast, and I care about clean and tested code. I'm sure I can start adding value to the team quickly.",
-          uz: "Siz ishlatadigan stack bilan — [Vue/React], Node.js va PostgreSQL — [X yil] tajribam bor. Frontend'da ham, backend'da ham ishlay olaman, shuning uchun to'liq feature qura olaman. Tez o'rganaman va toza, test qilingan kodga e'tibor beraman. Jamoaga tezda foyda keltira boshlashimga ishonaman.",
+          a: "I have [X years] of experience with the same stack you use: [Vue/React], Java with Spring Boot, and PostgreSQL. I can work on both the frontend and the backend, so I can build a full feature. I learn fast, and I care about clean and tested code. I'm sure I can start adding value to the team quickly.",
+          uz: "Siz ishlatadigan stack bilan — [Vue/React], Java va Spring Boot hamda PostgreSQL — [X yil] tajribam bor. Frontend'da ham, backend'da ham ishlay olaman, shuning uchun to'liq feature qura olaman. Tez o'rganaman va toza, test qilingan kodga e'tibor beraman. Jamoaga tezda foyda keltira boshlashimga ishonaman.",
           level: 'junior',
         },
         {
