@@ -4,7 +4,7 @@ import { marked } from 'marked'
 import { RouterLink } from 'vue-router'
 import { getDay } from '@/lib/plan'
 import { useProgressStore } from '@/stores/progress'
-import { aiReady, checkTask } from '@/lib/aiCheck'
+import { aiReady, checkTask, isFree, DAILY_FREE_LIMIT } from '@/lib/aiCheck'
 import AppIcon from './AppIcon.vue'
 import AiSettings from './AiSettings.vue'
 
@@ -79,10 +79,15 @@ async function runCheck(task, i) {
     showSettings.value = true
     return
   }
+  if (isFree() && progress.aiUsedToday >= DAILY_FREE_LIMIT) {
+    checkError.value = `Bugungi bepul limit (${DAILY_FREE_LIMIT} ta) tugadi. Ertaga davom eting yoki sozlamalarda o'z kalitingizni ulang.`
+    return
+  }
   checking.value = true
   try {
     const text = answer.value.trim()
     const result = await checkTask({ day: props.day, task, answer: text })
+    if (isFree()) progress.noteAiUse()
     progress.saveAiCheck(props.day, i, { ...result, answer: text })
   } catch (e) {
     checkError.value = e.message || String(e)

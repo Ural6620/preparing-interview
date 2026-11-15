@@ -1,11 +1,21 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { reactive, watch } from 'vue'
+import { app, auth, firebaseEnabled } from '@/lib/firebase'
 
-// Each user connects their own AI account. The API key is kept only in this
-// browser (localStorage) — it is never written to Firestore.
+// Default: Gemini through Firebase AI Logic — free, no key, works for anyone
+// signed in with Google. Optional: a user's own Claude / ChatGPT key, kept only
+// in this browser (localStorage) — never written to Firestore.
 const KEY = 'interview-prep:ai'
 
+/** Free Gemini checks per user per day (soft limit, counted in the progress doc). */
+export const DAILY_FREE_LIMIT = 30
+
 export const PROVIDERS = {
+  gemini: {
+    label: 'Gemini — bepul',
+    defaultModel: 'gemini-3.8-flash',
+    free: true,
+  },
   claude: {
     label: 'Claude (Anthropic)',
     defaultModel: 'claude-opus-5-5',
@@ -21,16 +31,18 @@ export const PROVIDERS = {
 }
 
 function load() {
+  const defaults = { provider: firebaseEnabled ? 'gemini' : 'claude', apiKey: '', model: '' }
+  let saved = {}
   try {
-    return {
-      provider: 'claude',
-      apiKey: '',
-      model: '',
-      ...JSON.parse(localStorage.getItem(KEY) || '{}'),
-    }
+    saved = JSON.parse(localStorage.getItem(KEY) || '{}')
   } catch {
-    return { provider: 'claude', apiKey: '', model: '' }
+    /* storage blocked */
   }
+  const s = { ...defaults, ...saved }
+  if (!PROVIDERS[s.provider]) s.provider = defaults.provider
+  // a paid provider picked earlier but never given a key → use the free one
+  if (firebaseEnabled && s.provider !== 'gemini' && !s.apiKey) s.provider = 'gemini'
+  return s
 }
 
 export const aiSettings = reactive(load())
@@ -42,7 +54,10 @@ watch(aiSettings, (v) => {
   }
 })
 
-export const aiReady = () => Boolean(aiSettings.apiKey.trim())
+export const isFree = () => aiSettings.provider === 'gemini'
+
+export const aiReady = () =>
+  isFree() ? Boolean(firebaseEnabled && auth?.currentUser) : Boolean(aiSettings.apiKey.trim())
 const modelOf = () => aiSettings.model.trim() || PROVIDERS[aiSettings.provider].defaultModel
 
 const SYSTEM = `You are a strict but kind mentor checking homework for a full-stack developer preparing for English-language technical interviews. The student's English level is A2–B1.
@@ -87,6 +102,61 @@ const FALLBACK_MODELS = [
   'claude-opus-5',
   'claude-sonnet-5-5',
 ]
+
+// ---------- Gemini via Firebase AI Logic (free tier, no key) ----------
+let aiInstance = null
+async function getAi() {
+  if (aiInstance) return aiInstance
+  // AI Logic requires App Check: the site proves requests come from this app.
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+  if (siteKey) {
+    const { initializeAppCheck, ReCaptchaEnterpriseProvider } = await import('firebase/app-check')
+    // local dev: prints a debug token to the console — register it in Firebase → App Check
+    if (import.meta.env.DEV) self.FIREBASE_APPCHECK_DEBUG_TOKEN = true
+    initializeAppCheck(app, {
+      provider: new ReCaptchaEnterpriseProvider(siteKey),
+      isTokenAutoRefreshEnabled: true,
+    })
+  }
+  const { getAI, GoogleAIBackend } = await import('firebase/ai')
+  aiInstance = getAI(app, { backend: new GoogleAIBackend() })
+  return aiInstance
+}
+
+// Gemini's JSON Schema subset: same shape, without the OpenAI-only strictness flag
+const { additionalProperties: _strict, ...GEMINI_SCHEMA } = SCHEMA
+
+async function askGemini(userText) {
+  const ai = await getAi()
+  const { getGenerativeModel } = await import('firebase/ai')
+  const model = getGenerativeModel(ai, {
+    model: modelOf(),
+    systemInstruction: SYSTEM,
+    generationConfig: { responseMimeType: 'application/json', responseJsonSchema: GEMINI_SCHEMA },
+  })
+  let text
+  try {
+    const result = await model.generateContent(userText)
+    text = result.response.text()
+  } catch (e) {
+    const status = e?.customErrorData?.status
+    if (e?.code === 'api-not-enabled')
+      throw new Error("Firebase'da AI Logic yoqilmagan (sayt egasi sozlashi kerak).", { cause: e })
+    if (status === 429)
+      throw new Error("Bepul limit hozircha tugadi — birozdan so'ng qayta urinib ko'ring.", {
+        cause: e,
+      })
+    if (status === 401 || status === 403)
+      throw new Error("AI'ga ruxsat berilmadi (App Check sozlamasini tekshiring).", { cause: e })
+    if (e?.code === 'fetch-error' && !status)
+      throw new Error("Internet aloqasi yo'q.", { cause: e })
+    if (e?.code === 'response-error')
+      throw new Error('AI bu javobni tekshirishdan bosh tortdi.', { cause: e })
+    throw new Error(`Gemini xatosi: ${e?.message || e}`, { cause: e })
+  }
+  if (!text) throw new Error("AI bo'sh javob qaytardi.")
+  return JSON.parse(text)
+}
 
 async function askClaude(userText) {
   const client = new Anthropic({ apiKey: aiSettings.apiKey.trim(), dangerouslyAllowBrowser: true })
@@ -170,7 +240,10 @@ async function askOpenAI(userText) {
  * @returns {Promise<{passed:boolean, score:number, feedback:string, todo:string, corrections:string[]}>}
  */
 export async function checkTask({ day, task, answer }) {
-  if (!aiReady()) throw new Error('Avval AI kalitini ulang.')
+  if (!aiReady())
+    throw new Error(
+      isFree() ? 'Bepul AI uchun Google akkaunt bilan kiring.' : 'Avval AI kalitini ulang.',
+    )
   const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/\*\*/g, '')
   const userText = `Day ${day} task — ${clean(task.title)}${task.minutes ? ` (${task.minutes} min)` : ''}:
 ${clean(task.text)}
@@ -179,8 +252,8 @@ Student's submission:
 """
 ${answer}
 """`
-  const out =
-    aiSettings.provider === 'openai' ? await askOpenAI(userText) : await askClaude(userText)
+  const ask = { gemini: askGemini, openai: askOpenAI, claude: askClaude }[aiSettings.provider]
+  const out = await ask(userText)
   return {
     passed: Boolean(out.passed),
     score: Number(out.score) || 0,

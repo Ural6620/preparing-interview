@@ -26,6 +26,7 @@ const empty = () => ({
   qaStatus: {}, // knowledge-base questions: { 'closures-0': 'ok' | 'review' }
   problems: {}, // algorithm problems: { 'two-sum': 'solved' | 'unaided' }
   assessments: [], // [{ id, date, day, scores: { fe, be, db, devops, dsa, english } }]
+  aiUsage: {}, // { '2026-11-15': 4 } — free Gemini checks used per day
   aiChecks: {}, // { d1_2: { passed, score, feedback, todo, corrections, answer, date } } — last AI review
 })
 
@@ -168,6 +169,16 @@ export const useProgressStore = defineStore('progress', () => {
     if (result.passed) return setTaskDone(day, i, true, local, { aiChecks: { [key]: entry } })
     commit(local, { aiChecks: { [key]: entry } })
     return true
+  }
+
+  const aiUsedToday = computed(() => data.value.aiUsage?.[today.value] || 0)
+
+  function noteAiUse() {
+    tick()
+    const date = today.value
+    commit((d) => (d.aiUsage = { ...d.aiUsage, [date]: (d.aiUsage?.[date] || 0) + 1 }), {
+      aiUsage: { [date]: increment(1) },
+    })
   }
 
   const aiCheckOf = (day, i) => data.value.aiChecks?.[taskKey(day, i)] || null
@@ -322,6 +333,8 @@ export const useProgressStore = defineStore('progress', () => {
     carriedOver,
     dayDatesOf,
     saveAiCheck,
+    aiUsedToday,
+    noteAiUse,
     aiCheckOf,
     setQaStatus,
     setProblem,

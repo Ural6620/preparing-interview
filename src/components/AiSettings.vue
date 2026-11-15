@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import { aiSettings, PROVIDERS } from '@/lib/aiCheck'
+import { aiSettings, PROVIDERS, DAILY_FREE_LIMIT, isFree } from '@/lib/aiCheck'
+import { firebaseEnabled } from '@/lib/firebase'
+import { useProgressStore } from '@/stores/progress'
 
 const show = ref(false)
+const progress = useProgressStore()
 </script>
 
 <template>
@@ -14,42 +17,56 @@ const show = ref(false)
         class="prov"
         :class="{ on: aiSettings.provider === id }"
       >
-        <input v-model="aiSettings.provider" type="radio" :value="id" />
+        <input
+          v-model="aiSettings.provider"
+          type="radio"
+          :value="id"
+          :disabled="p.free && !firebaseEnabled"
+        />
         {{ p.label }}
       </label>
     </div>
 
-    <label class="field">
-      <span class="small muted">API kalit</span>
-      <div class="row key">
+    <p v-if="isFree()" class="small free-note">
+      ✅ Kalit kerak emas — Google akkauntingiz orqali bepul ishlaydi. Bugun:
+      <b>{{ progress.aiUsedToday }}/{{ DAILY_FREE_LIMIT }}</b> ta tekshiruv.
+    </p>
+
+    <template v-else>
+      <label class="field">
+        <span class="small muted">API kalit</span>
+        <div class="row key">
+          <input
+            v-model="aiSettings.apiKey"
+            :type="show ? 'text' : 'password'"
+            :placeholder="PROVIDERS[aiSettings.provider].keyHint"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="btn sm" @click="show = !show">
+            {{ show ? 'Yashirish' : "Ko'rsatish" }}
+          </button>
+        </div>
+      </label>
+
+      <label class="field">
+        <span class="small muted">Model (ixtiyoriy)</span>
         <input
-          v-model="aiSettings.apiKey"
-          :type="show ? 'text' : 'password'"
-          :placeholder="PROVIDERS[aiSettings.provider].keyHint"
-          autocomplete="off"
+          v-model="aiSettings.model"
+          :placeholder="PROVIDERS[aiSettings.provider].defaultModel"
           spellcheck="false"
         />
-        <button type="button" class="btn sm" @click="show = !show">
-          {{ show ? 'Yashirish' : "Ko'rsatish" }}
-        </button>
-      </div>
-    </label>
+      </label>
 
-    <label class="field">
-      <span class="small muted">Model (ixtiyoriy)</span>
-      <input
-        v-model="aiSettings.model"
-        :placeholder="PROVIDERS[aiSettings.provider].defaultModel"
-        spellcheck="false"
-      />
-    </label>
-
-    <p class="small muted">
-      Kalitni
-      <a :href="PROVIDERS[aiSettings.provider].keyUrl" target="_blank" rel="noopener">shu yerdan</a>
-      oling. Kalit faqat shu brauzerda saqlanadi, serverga yuborilmaydi — har bir qurilmada bir
-      marta kiriting. To'lov sizning AI hisobingizdan yechiladi.
-    </p>
+      <p class="small muted">
+        Kalitni
+        <a :href="PROVIDERS[aiSettings.provider].keyUrl" target="_blank" rel="noopener"
+          >shu yerdan</a
+        >
+        oling. Kalit faqat shu brauzerda saqlanadi, serverga yuborilmaydi — har bir qurilmada bir
+        marta kiriting. To'lov sizning AI hisobingizdan yechiladi.
+      </p>
+    </template>
   </div>
 </template>
 
@@ -61,7 +78,7 @@ const show = ref(false)
 }
 .providers {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 8px;
 }
 .prov {
@@ -74,6 +91,12 @@ const show = ref(false)
   cursor: pointer;
   font-weight: 600;
   font-size: 0.9rem;
+}
+.free-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--success-soft);
 }
 .prov.on {
   border-color: var(--accent);
