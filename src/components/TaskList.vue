@@ -23,8 +23,10 @@ const AI_PROMPT =
 function actionsFor(task, i) {
   const t = task.text
   const out = []
-  if (task.title.startsWith('Chunks'))
+  if (task.title.startsWith('Chunks')) {
+    out.push({ label: '🧠 Bugungi yodlash', to: { path: `/day/${props.day}`, hash: '#drill' } })
     out.push({ label: 'Iboralar', to: { path: '/phrases', query: { week: dayData.value.week } } })
+  }
   if (
     /audio|monolog|jonli|tell me about yourself|ovoz chiqarib|mock|hikoya|tayyorgarliksiz/i.test(
       t,

@@ -24,6 +24,7 @@ const empty = () => ({
   dayNotes: {}, // { d1: 'text' }
   lastDay: null,
   qaStatus: {}, // knowledge-base questions: { 'closures-0': 'ok' | 'review' }
+  qaDate: {}, // when each question was last rated: { 'closures-0': '2026-11-15' }
   problems: {}, // algorithm problems: { 'two-sum': 'solved' | 'unaided' }
   assessments: [], // [{ id, date, day, scores: { fe, be, db, devops, dsa, english } }]
   aiUsage: {}, // { '2026-11-15': 4 } — free Gemini checks used per day
@@ -171,6 +172,10 @@ export const useProgressStore = defineStore('progress', () => {
     return true
   }
 
+  /** True if the question was rated (Bilaman / Takrorlash) today. */
+  const ratedToday = (key) =>
+    data.value.qaDate?.[key] === today.value && Boolean(data.value.qaStatus[key])
+
   const aiUsedToday = computed(() => data.value.aiUsage?.[today.value] || 0)
 
   function noteAiUse() {
@@ -186,7 +191,15 @@ export const useProgressStore = defineStore('progress', () => {
   // status '' removes the mark (stored as null — merge can't delete keys)
   function setQaStatus(key, status) {
     const v = status || null
-    commit((d) => (d.qaStatus[key] = v), { qaStatus: { [key]: v } })
+    tick()
+    const date = today.value
+    commit(
+      (d) => {
+        d.qaStatus[key] = v
+        d.qaDate = { ...d.qaDate, [key]: date }
+      },
+      { qaStatus: { [key]: v }, qaDate: { [key]: date } },
+    )
   }
 
   function setProblem(id, status) {
@@ -334,6 +347,7 @@ export const useProgressStore = defineStore('progress', () => {
     dayDatesOf,
     saveAiCheck,
     aiUsedToday,
+    ratedToday,
     noteAiUse,
     aiCheckOf,
     setQaStatus,

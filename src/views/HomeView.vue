@@ -14,6 +14,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useProgressStore } from '@/stores/progress'
 import TaskList from '@/components/TaskList.vue'
 import DayMaterials from '@/components/DayMaterials.vue'
+import DailyDrill from '@/components/DailyDrill.vue'
 import SpeakButton from '@/components/SpeakButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
 
@@ -145,6 +146,8 @@ const greeting = computed(() => {
 
       <TaskList :day="dayNum" />
     </section>
+
+    <DailyDrill :day="dayNum" />
 
     <DayMaterials :day="dayNum" compact />
 

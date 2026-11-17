@@ -11,6 +11,8 @@ const props = defineProps({
   qkey: { type: String, required: true },
   drill: { type: Boolean, default: false }, // translation drill (grammar)
   index: { type: Number, default: null },
+  // daily drill: a rating always (re)sets the status for today instead of toggling it off
+  sticky: { type: Boolean, default: false },
 })
 
 const progress = useProgressStore()
@@ -18,19 +20,27 @@ const open = ref(false)
 const showUz = ref(false)
 const status = computed(() => progress.data.qaStatus[props.qkey] || '')
 
+const doneToday = computed(() => props.sticky && progress.ratedToday(props.qkey))
+
 function rate(s) {
-  progress.setQaStatus(props.qkey, status.value === s ? '' : s)
+  if (props.sticky) {
+    progress.setQaStatus(props.qkey, s)
+    open.value = false // next card
+  } else progress.setQaStatus(props.qkey, status.value === s ? '' : s)
 }
 </script>
 
 <template>
-  <article class="qcard" :class="[status, { open }]">
+  <article class="qcard" :class="[status, { open, today: doneToday }]">
     <header @click="open = !open">
-      <span class="num">{{ status === 'ok' ? '✓' : status === 'review' ? '↻' : index != null ? index + 1 : '•' }}</span>
+      <span class="num">{{
+        status === 'ok' ? '✓' : status === 'review' ? '↻' : index != null ? index + 1 : '•'
+      }}</span>
       <div class="qtext">
         <small v-if="drill" class="muted">Inglizchaga tarjima qiling:</small>
         <strong v-html="inlineMd(question.q)" />
       </div>
+      <span v-if="doneToday" class="chip success lvl">bugun ✓</span>
       <span v-if="question.level === 'middle'" class="chip warn lvl">middle</span>
       <SpeakButton v-if="!drill" :text="question.q" />
     </header>
@@ -57,10 +67,18 @@ function rate(s) {
       </p>
 
       <div class="row actions">
-        <button class="btn sm" :class="{ active: status === 'ok' }" @click="rate('ok')">✅ Bilaman</button>
-        <button class="btn sm" :class="{ active: status === 'review' }" @click="rate('review')">🔁 Takrorlash</button>
+        <button class="btn sm" :class="{ active: status === 'ok' }" @click="rate('ok')">
+          ✅ Bilaman
+        </button>
+        <button class="btn sm" :class="{ active: status === 'review' }" @click="rate('review')">
+          🔁 Takrorlash
+        </button>
         <span class="spacer" />
-        <RouterLink v-if="!drill" :to="{ path: '/speak', query: { q: question.q } }" class="btn sm ghost">
+        <RouterLink
+          v-if="!drill"
+          :to="{ path: '/speak', query: { q: question.q } }"
+          class="btn sm ghost"
+        >
           🎙 Javobni yozib olish
         </RouterLink>
       </div>
@@ -73,6 +91,9 @@ function rate(s) {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--surface);
+}
+.qcard.today {
+  opacity: 0.7;
 }
 .qcard.ok {
   border-color: color-mix(in srgb, var(--success) 40%, var(--border));

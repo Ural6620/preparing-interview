@@ -57,7 +57,7 @@ version: 3.0
 <!-- day:1 week:1 -->
 ### Kun 1 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **Boshlang'ich audio:** "Tell me about yourself", 1.5 daqiqa, saqla
 - [ ] **Texnik vazifa** (50 daq) — O'z-o'zini baholash: har bir soha (FE, BE, DB, DevOps, DSA) 1–5 ball — zaif tomonlar ro'yxati
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -65,7 +65,7 @@ version: 3.0
 <!-- day:2 week:1 -->
 ### Kun 2 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — "Tell me about yourself" ni shablonda yoz
 - [ ] **Texnik vazifa** (50 daq) — Big O asoslari: O(1), O(n), O(n²), O(log n) — inglizcha video
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -73,7 +73,7 @@ version: 3.0
 <!-- day:3 week:1 -->
 ### Kun 3 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Talaffuz jadvali + shadowing
 - [ ] **Texnik vazifa** (50 daq) — **CV inglizcha:** tajriba, stack, natijalar (raqamlar bilan)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -81,7 +81,7 @@ version: 3.0
 <!-- day:4 week:1 -->
 ### Kun 4 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Javobni 5 marta ayt, qog'ozga kamroq qarab
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Two Sum, Contains Duplicate
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -89,7 +89,7 @@ version: 3.0
 <!-- day:5 week:1 -->
 ### Kun 5 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: "Ask me about my experience and stack"
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Valid Anagram, Valid Palindrome
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -97,7 +97,7 @@ version: 3.0
 <!-- day:6 week:1 -->
 ### Kun 6 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: tanishuv
 - [ ] **Texnik vazifa** (50 daq) — **GitHub:** profil README, eng yaxshi 3 repo'ni pin qilish, inglizcha tavsif
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -105,7 +105,7 @@ version: 3.0
 <!-- day:7 week:1 -->
 ### Kun 7 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: "Tell me about yourself", "Why full-stack?", "What's your strongest skill?"
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -136,7 +136,7 @@ version: 3.0
 <!-- day:8 week:2 -->
 ### Kun 8 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: portfolio walkthrough video
 - [ ] **Texnik vazifa** (50 daq) — Hash map nazariyasi: Java `HashMap` ichida qanday ishlaydi (`hashCode`/`equals`, bucket, collision), qachon ishlatiladi
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -144,7 +144,7 @@ version: 3.0
 <!-- day:9 week:2 -->
 ### Kun 9 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Eng yaxshi loyiha uchun PSTR yoz
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Group Anagrams, Top K Frequent Elements
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -152,7 +152,7 @@ version: 3.0
 <!-- day:10 week:2 -->
 ### Kun 10 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — Eng yaxshi loyihang uchun arxitektura diagrammasi chiz (draw.io / Excalidraw)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -160,7 +160,7 @@ version: 3.0
 <!-- day:11 week:2 -->
 ### Kun 11 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: loyihang, 3 daqiqa
 - [ ] **Texnik vazifa** (50 daq) — Loyiha texnik qarorlari: nega shu DB, shu framework — inglizcha yozib chiq
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -168,7 +168,7 @@ version: 3.0
 <!-- day:12 week:2 -->
 ### Kun 12 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: loyihang bo'yicha chuqur savollar
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Best Time to Buy and Sell Stock, Product of Array Except Self
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -176,7 +176,7 @@ version: 3.0
 <!-- day:13 week:2 -->
 ### Kun 13 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: loyihangni tushuntir
 - [ ] **Texnik vazifa** (50 daq) — Java qanday ishlaydi: JDK/JRE/JVM, bytecode, heap vs stack, garbage collection
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -184,7 +184,7 @@ version: 3.0
 <!-- day:14 week:2 -->
 ### Kun 14 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Ikkinchi loyiha PSTR + tahlil
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: "Tell me about a project", "Hardest technical problem?"
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -215,7 +215,7 @@ version: 3.0
 <!-- day:15 week:3 -->
 ### Kun 15 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: "day in the life of a software engineer"
 - [ ] **Texnik vazifa** (50 daq) — Git chuqur: merge vs rebase, cherry-pick, reset vs revert, branching strategiyalar
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -223,7 +223,7 @@ version: 3.0
 <!-- day:16 week:3 -->
 ### Kun 16 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 5 tushuncha: sprint, code review, PR, CI, ticket
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Two Sum II, 3Sum (two pointers)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -231,7 +231,7 @@ version: 3.0
 <!-- day:17 week:3 -->
 ### Kun 17 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — Amaliyot: test repo'da conflict yaratib hal qilish, interactive rebase
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -239,7 +239,7 @@ version: 3.0
 <!-- day:18 week:3 -->
 ### Kun 18 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "How my team works"
 - [ ] **Texnik vazifa** (50 daq) — Testing: unit / integration / e2e, test pyramid — JUnit 5 + Mockito
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -247,7 +247,7 @@ version: 3.0
 <!-- day:19 week:3 -->
 ### Kun 19 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: standup simulyatsiyasi
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Container With Most Water, Valid Parentheses
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -255,7 +255,7 @@ version: 3.0
 <!-- day:20 week:3 -->
 ### Kun 20 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: jamoa jarayonlari
 - [ ] **Texnik vazifa** (50 daq) — Amaliyot: Java kodingga JUnit 5 bilan 5 ta unit test yoz (bittasida Mockito mock)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -263,7 +263,7 @@ version: 3.0
 <!-- day:21 week:3 -->
 ### Kun 21 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: "Merge vs rebase?", "How do you test your code?", "How do you do code review?"
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -294,7 +294,7 @@ version: 3.0
 <!-- day:22 week:4 -->
 ### Kun 22 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: code review video
 - [ ] **Texnik vazifa** (50 daq) — Java OOP: class, interface vs abstract class, 4 ustun, `equals`/`hashCode` + clean code (nomlash, DRY, KISS)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -302,7 +302,7 @@ version: 3.0
 <!-- day:23 week:4 -->
 ### Kun 23 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 3 ta funksiyangni ovoz chiqarib tushuntir
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Longest Substring Without Repeating Characters, Maximum Subarray
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -310,7 +310,7 @@ version: 3.0
 <!-- day:24 week:4 -->
 ### Kun 24 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — SOLID — har bir prinsipga Java misol (interface + constructor injection)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -318,7 +318,7 @@ version: 3.0
 <!-- day:25 week:4 -->
 ### Kun 25 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "A bug I fixed"
 - [ ] **Texnik vazifa** (50 daq) — Java Collections: List/Set/Map, ArrayList vs LinkedList, generics + debugging (IntelliJ breakpoint, DevTools network tab)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -326,7 +326,7 @@ version: 3.0
 <!-- day:26 week:4 -->
 ### Kun 26 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: kodingni tushuntir
 - [ ] **Texnik vazifa** (50 daq) — Masalalar: Binary Search, Search in Rotated Sorted Array
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -334,7 +334,7 @@ version: 3.0
 <!-- day:27 week:4 -->
 ### Kun 27 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: kod ko'rsatish
 - [ ] **Texnik vazifa** (50 daq) — Java: exceptions (checked/unchecked), Stream API, Optional, record — eski kodingdan 1 faylni shular bilan refactor qil
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -342,7 +342,7 @@ version: 3.0
 <!-- day:28 week:4 -->
 ### Kun 28 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **1-oy yakuni:** intro + loyiha + bug (6 daq) → 1-kun bilan solishtir
 - [ ] **Texnik vazifa** (50 daq) — **1-oy yakuni:** o'z-o'zini baholashni qayta qil, 2-oy uchun zaif soha
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -375,7 +375,7 @@ version: 3.0
 <!-- day:29 week:5 -->
 ### Kun 29 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: frontend explainer
 - [ ] **Texnik vazifa** (50 daq) — JS asoslari: closures, `this`, prototype, hoisting
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -383,7 +383,7 @@ version: 3.0
 <!-- day:30 week:5 -->
 ### Kun 30 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 5 tushuncha × 1 daqiqa
 - [ ] **Texnik vazifa** (50 daq) — Event loop, promises, async/await — microtask vs macrotask
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -391,7 +391,7 @@ version: 3.0
 <!-- day:31 week:5 -->
 ### Kun 31 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** frontend skeleti — routing, layout, TypeScript
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -399,7 +399,7 @@ version: 3.0
 <!-- day:32 week:5 -->
 ### Kun 32 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "SSR vs CSR"
 - [ ] **Texnik vazifa** (50 daq) — Browser: rendering pipeline, CORS, cookies vs localStorage, XSS
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -407,7 +407,7 @@ version: 3.0
 <!-- day:33 week:5 -->
 ### Kun 33 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: 10 ta frontend savol
 - [ ] **Texnik vazifa** (50 daq) — Framework: lifecycle, state management, performance (memo, lazy)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -415,7 +415,7 @@ version: 3.0
 <!-- day:34 week:5 -->
 ### Kun 34 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: frontend suhbat
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** board va task UI, form validation
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -423,7 +423,7 @@ version: 3.0
 <!-- day:35 week:5 -->
 ### Kun 35 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: event loop, closure, CORS, SSR, state management — 10 ta javob
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -455,7 +455,7 @@ version: 3.0
 <!-- day:36 week:6 -->
 ### Kun 36 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: REST explainer
 - [ ] **Texnik vazifa** (50 daq) — HTTP chuqur (methods, status codes, idempotency) + Spring'ga kirish: IoC, Dependency Injection, bean'lar, Spring Boot starter'lar
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -463,7 +463,7 @@ version: 3.0
 <!-- day:37 week:6 -->
 ### Kun 37 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 5 tushuncha × 1 daqiqa
 - [ ] **Texnik vazifa** (50 daq) — REST dizayn + Spring MVC: `@RestController`, DTO, `ResponseEntity`, pagination (`Pageable`), versioning
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -471,7 +471,7 @@ version: 3.0
 <!-- day:38 week:6 -->
 ### Kun 38 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** Spring Boot backend — boards/tasks CRUD: Controller → Service → Repository (Spring Data JPA)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -479,7 +479,7 @@ version: 3.0
 <!-- day:39 week:6 -->
 ### Kun 39 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "What happens when you log in"
 - [ ] **Texnik vazifa** (50 daq) — Auth: Spring Security filter chain, JWT, refresh token, session vs token, BCrypt
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -487,7 +487,7 @@ version: 3.0
 <!-- day:40 week:6 -->
 ### Kun 40 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: 10 ta backend savol
 - [ ] **Texnik vazifa** (50 daq) — Spring'da xatolar: Bean Validation (`@Valid`), `@RestControllerAdvice`, logging (SLF4J), filter/interceptor, rate limiting
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -495,7 +495,7 @@ version: 3.0
 <!-- day:41 week:6 -->
 ### Kun 41 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: API dizayni
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** register/login, JWT filter (`OncePerRequestFilter`), himoyalangan endpoint'lar, `@WebMvcTest` bilan 2 ta test
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -503,7 +503,7 @@ version: 3.0
 <!-- day:42 week:6 -->
 ### Kun 42 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: REST, idempotency, JWT vs session, 401 vs 403, DI, bean scope — 10 ta javob
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -534,7 +534,7 @@ version: 3.0
 <!-- day:43 week:7 -->
 ### Kun 43 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: SQL vs NoSQL
 - [ ] **Texnik vazifa** (50 daq) — SQL amaliyot: JOIN turlari, GROUP BY, HAVING, subquery
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -542,7 +542,7 @@ version: 3.0
 <!-- day:44 week:7 -->
 ### Kun 44 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 5 tushuncha × 1 daqiqa
 - [ ] **Texnik vazifa** (50 daq) — SQL amaliyot: window functions (ROW_NUMBER, RANK), 10 ta query
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -550,7 +550,7 @@ version: 3.0
 <!-- day:45 week:7 -->
 ### Kun 45 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** schema, Flyway migration'lar, JPA entity va relation'lar (`@ManyToOne`/`@OneToMany`), seed data
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -558,7 +558,7 @@ version: 3.0
 <!-- day:46 week:7 -->
 ### Kun 46 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "Database for an online shop"
 - [ ] **Texnik vazifa** (50 daq) — Index (B-tree), EXPLAIN, normalization (1NF–3NF)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -566,7 +566,7 @@ version: 3.0
 <!-- day:47 week:7 -->
 ### Kun 47 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: 10 ta DB savol
 - [ ] **Texnik vazifa** (50 daq) — Transaction, ACID, isolation levels, deadlock; Spring `@Transactional`; N+1 va JPA'da yechimi
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -574,7 +574,7 @@ version: 3.0
 <!-- day:48 week:7 -->
 ### Kun 48 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: DB tanlovi bahsi
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** kerakli index'lar, EXPLAIN bilan tekshirish, JPA N+1 ni `JOIN FETCH` / `@EntityGraph` bilan tuzatish
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -582,7 +582,7 @@ version: 3.0
 <!-- day:49 week:7 -->
 ### Kun 49 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: index, ACID, SQL vs NoSQL, N+1, `@Transactional`, JPA lazy/eager — 10 ta javob
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -613,7 +613,7 @@ version: 3.0
 <!-- day:50 week:8 -->
 ### Kun 50 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: Docker / CI/CD
 - [ ] **Texnik vazifa** (50 daq) — Docker: image vs container, layers, multi-stage build, volumes, networks
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -621,7 +621,7 @@ version: 3.0
 <!-- day:51 week:8 -->
 ### Kun 51 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 5 tushuncha × 1 daqiqa
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** Dockerfile (Vue + Spring Boot, multi-stage Maven build), docker-compose (+ PostgreSQL)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -629,7 +629,7 @@ version: 3.0
 <!-- day:52 week:8 -->
 ### Kun 52 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — CI/CD: GitHub Actions — backend `./mvnw verify` (JUnit), frontend lint + test, build
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -637,7 +637,7 @@ version: 3.0
 <!-- day:53 week:8 -->
 ### Kun 53 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "How we deploy, step by step"
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** GitHub Actions pipeline + deploy
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -645,7 +645,7 @@ version: 3.0
 <!-- day:54 week:8 -->
 ### Kun 54 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: 10 ta DevOps savol
 - [ ] **Texnik vazifa** (50 daq) — Xavfsizlik: OWASP Top 10 — SQL injection, XSS, CSRF, HTTPS
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -653,7 +653,7 @@ version: 3.0
 <!-- day:55 week:8 -->
 ### Kun 55 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: deploy suhbati
 - [ ] **Texnik vazifa** (50 daq) — **Loyiha:** inglizcha README + arxitektura diagrammasi, demo link
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -661,7 +661,7 @@ version: 3.0
 <!-- day:56 week:8 -->
 ### Kun 56 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **2-oy yakuni:** 4 sohadan 1 tadan tushuncha (8 daq)
 - [ ] **Texnik vazifa** (50 daq) — **2-oy yakuni:** portfolio loyiha — PSTR hikoyasini yoz va 3 daqiqa gapir
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -694,7 +694,7 @@ version: 3.0
 <!-- day:57 week:9 -->
 ### Kun 57 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: system design intro
 - [ ] **Texnik vazifa** (50 daq) — Asoslar: vertical vs horizontal scaling, load balancer, CDN
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -702,7 +702,7 @@ version: 3.0
 <!-- day:58 week:9 -->
 ### Kun 58 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 5 qadamli shablon — qog'ozda
 - [ ] **Texnik vazifa** (50 daq) — Caching: Redis, cache invalidation, TTL; message queue'lar
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -710,7 +710,7 @@ version: 3.0
 <!-- day:59 week:9 -->
 ### Kun 59 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — DB scaling: replication, sharding, read replica; CAP teoremasi (asos)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -718,7 +718,7 @@ version: 3.0
 <!-- day:60 week:9 -->
 ### Kun 60 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: "Design a URL shortener" (5 daq)
 - [ ] **Texnik vazifa** (50 daq) — Dizayn: URL shortener — diagramma, API, schema
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -726,7 +726,7 @@ version: 3.0
 <!-- day:61 week:9 -->
 ### Kun 61 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: "Design a chat app"
 - [ ] **Texnik vazifa** (50 daq) — Dizayn: chat app — WebSocket, xabarlarni saqlash
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -734,7 +734,7 @@ version: 3.0
 <!-- day:62 week:9 -->
 ### Kun 62 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: system design mashqi
 - [ ] **Texnik vazifa** (50 daq) — Dizayn: o'z portfolio loyihangni 1 mln foydalanuvchiga scale qilish
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -742,7 +742,7 @@ version: 3.0
 <!-- day:63 week:9 -->
 ### Kun 63 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank: scaling, caching, queue, replication — 8 ta javob
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -771,7 +771,7 @@ version: 3.0
 <!-- day:64 week:10 -->
 ### Kun 64 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: behavioral interview misoli
 - [ ] **Texnik vazifa** (50 daq) — Stack & queue nazariyasi + Min Stack, Daily Temperatures
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -779,7 +779,7 @@ version: 3.0
 <!-- day:65 week:10 -->
 ### Kun 65 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 4 ta STAR hikoya yoz
 - [ ] **Texnik vazifa** (50 daq) — Linked list: Reverse Linked List, Merge Two Sorted Lists, Linked List Cycle
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -787,7 +787,7 @@ version: 3.0
 <!-- day:66 week:10 -->
 ### Kun 66 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Qolgan 4 ta STAR
 - [ ] **Texnik vazifa** (50 daq) — Tree asoslari: BFS vs DFS — Invert Binary Tree, Maximum Depth
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -795,7 +795,7 @@ version: 3.0
 <!-- day:67 week:10 -->
 ### Kun 67 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 8 hikoya × 2 daqiqa — yozib ol
 - [ ] **Texnik vazifa** (50 daq) — Tree: Level Order Traversal, Validate BST
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -803,7 +803,7 @@ version: 3.0
 <!-- day:68 week:10 -->
 ### Kun 68 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: tasodifiy behavioral savollar
 - [ ] **Texnik vazifa** (50 daq) — Graph asoslari: Number of Islands
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -811,7 +811,7 @@ version: 3.0
 <!-- day:69 week:10 -->
 ### Kun 69 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: behavioral mock
 - [ ] **Texnik vazifa** (50 daq) — Merge Intervals, Climbing Stairs (DP kirish)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -819,7 +819,7 @@ version: 3.0
 <!-- day:70 week:10 -->
 ### Kun 70 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili
 - [ ] **Texnik vazifa** (50 daq) — Hafta masalalarini qayta yech — yechimni yodlamasdan
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -848,7 +848,7 @@ version: 3.0
 <!-- day:71 week:11 -->
 ### Kun 71 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Input: live coding interview video
 - [ ] **Texnik vazifa** (50 daq) — Timed: 2 ta Medium masala, har biri 25 daqiqa, ovoz chiqarib
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -856,7 +856,7 @@ version: 3.0
 <!-- day:72 week:11 -->
 ### Kun 72 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Big O'ni inglizcha aytish mashqi
 - [ ] **Texnik vazifa** (50 daq) — Take-home uslubi: 50 daqiqada kichik feature (search + filter) qo'shish
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -864,7 +864,7 @@ version: 3.0
 <!-- day:73 week:11 -->
 ### Kun 73 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Shadowing + talaffuz
 - [ ] **Texnik vazifa** (50 daq) — Timed: 2 ta Medium
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -872,7 +872,7 @@ version: 3.0
 <!-- day:74 week:11 -->
 ### Kun 74 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Monolog: 1 masalani to'liq tushuntir
 - [ ] **Texnik vazifa** (50 daq) — Frontend live coding: debounce funksiyasi, todo komponent
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -880,7 +880,7 @@ version: 3.0
 <!-- day:75 week:11 -->
 ### Kun 75 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — AI: masala ber, ovoz chiqarib yech
 - [ ] **Texnik vazifa** (50 daq) — Java concurrency: thread, `ExecutorService`, `synchronized`, `CompletableFuture`, virtual threads + 1 ta Medium
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -888,7 +888,7 @@ version: 3.0
 <!-- day:76 week:11 -->
 ### Kun 76 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Jonli: live coding mock
 - [ ] **Texnik vazifa** (50 daq) — Backend live coding: Spring Boot'da 1 ta endpoint + Bean Validation + MockMvc test
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -896,7 +896,7 @@ version: 3.0
 <!-- day:77 week:11 -->
 ### Kun 77 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Audio tahlili: jim qolgan joylar
 - [ ] **Texnik vazifa** (50 daq) — Xatolaringni ko'rib chiq: qaysi pattern'lar qiyin?
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -912,7 +912,7 @@ version: 3.0
 <!-- day:78 week:12 -->
 ### Kun 78 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **Mock #1** (AI): intro + loyiha + 3 texnik savol
 - [ ] **Texnik vazifa** (50 daq) — Mock #1 dagi zaif texnik javoblarni Q&A bankda yangilash
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -920,7 +920,7 @@ version: 3.0
 <!-- day:79 week:12 -->
 ### Kun 79 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Mock #1 zaif javoblarini qayta yozib olish
 - [ ] **Texnik vazifa** (50 daq) — Timed: 2 ta Medium
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -928,7 +928,7 @@ version: 3.0
 <!-- day:80 week:12 -->
 ### Kun 80 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Interviewer'ga savollar tayyorlash
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank to'liq takrori: FE + BE (Java, Spring)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -936,7 +936,7 @@ version: 3.0
 <!-- day:81 week:12 -->
 ### Kun 81 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **Mock #2** (AI): behavioral + system design
 - [ ] **Texnik vazifa** (50 daq) — Q&A bank takrori: DB + DevOps + system design
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -944,7 +944,7 @@ version: 3.0
 <!-- day:82 week:12 -->
 ### Kun 82 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Mock #2 tahlili
 - [ ] **Texnik vazifa** (50 daq) — Timed: 2 ta Medium
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -952,7 +952,7 @@ version: 3.0
 <!-- day:83 week:12 -->
 ### Kun 83 · Shanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **Mock #3** — jonli odam bilan, to'liq
 - [ ] **Texnik vazifa** (50 daq) — Mock #3 tahlili
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -960,7 +960,7 @@ version: 3.0
 <!-- day:84 week:12 -->
 ### Kun 84 · Yakshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — **Yakuniy audio:** "Tell me about yourself"
 - [ ] **Texnik vazifa** (50 daq) — Yakuniy o'z-o'zini baholash (1-kun bilan solishtir)
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -978,7 +978,7 @@ version: 3.0
 <!-- day:85 week:13 -->
 ### Kun 85 · Dushanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Eng zaif sohadan 5 tushuncha
 - [ ] **Texnik vazifa** (50 daq) — Shu sohaning Q&A bankini takrorlash
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -986,7 +986,7 @@ version: 3.0
 <!-- day:86 week:13 -->
 ### Kun 86 · Seshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Barcha chunks — ovoz chiqarib
 - [ ] **Texnik vazifa** (50 daq) — 10 ta eng muhim masalani qayta yech
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -994,7 +994,7 @@ version: 3.0
 <!-- day:87 week:13 -->
 ### Kun 87 · Chorshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 8 ta STAR hikoya takrori
 - [ ] **Texnik vazifa** (50 daq) — Portfolio loyihani oxirgi tekshirish: demo ishlayaptimi, README
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -1002,7 +1002,7 @@ version: 3.0
 <!-- day:88 week:13 -->
 ### Kun 88 · Payshanba
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — Tayyorgarliksiz: tasodifiy mavzu, 3 daq
 - [ ] **Texnik vazifa** (50 daq) — CV yakuniy versiya, 10 ta kompaniya ro'yxati
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol
@@ -1010,7 +1010,7 @@ version: 3.0
 <!-- day:89 week:13 -->
 ### Kun 89 · Juma
 
-- [ ] **Chunks + input + shadowing** (35 daq) — haftaning iboralari, texnik video, 1 daqiqalik parchani takrorlash
+- [ ] **Chunks + input + shadowing** (35 daq) — 🧠 Bugungi yodlash: yangi iboralar + savollar va takrorlash, texnik video, 1 daqiqalik parchani shadowing
 - [ ] **English vazifa** (25 daq) — 1-, 28-, 56-, 84-kun audiolarini eshitish
 - [ ] **Texnik vazifa** (50 daq) — Birinchi arizalarni yuborish
 - [ ] **Inglizcha xulosa** (10 daq) — bugun o'rganganingni 2 daqiqa ovoz chiqarib tushuntir, yozib ol

@@ -5,6 +5,7 @@ import { getDay, getWeek, phrasesForWeek, TOTAL_DAYS } from '@/lib/plan'
 import { useProgressStore } from '@/stores/progress'
 import TaskList from '@/components/TaskList.vue'
 import DayMaterials from '@/components/DayMaterials.vue'
+import DailyDrill from '@/components/DailyDrill.vue'
 import SpeakButton from '@/components/SpeakButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
 
@@ -83,6 +84,8 @@ function onNote() {
     </div>
 
     <TaskList :day="n" />
+
+    <DailyDrill :day="n" />
 
     <DayMaterials :day="n" />
 
