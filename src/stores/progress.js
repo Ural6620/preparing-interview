@@ -17,7 +17,7 @@ const LOCAL_KEY = 'interview-prep:progress'
 const empty = () => ({
   done: {}, // { d1_0: true }
   activity: {}, // { '2026-11-13': 3 }  — number of tasks ticked that day
-  dayDates: {}, // { '1': { start: '2026-11-14', end: '2026-11-15' } } — when each plan day was started / finished
+  dayDates2: {}, // schedule v2 — { '1': { start: '2026-11-14', end: '2026-11-15' } } — when each plan day was started / finished
   mistakes: [], // [{ id, date, said, correct, type }]
   qa: [], // [{ id, question, answer, example, followUp, status }]
   audioLog: [], // [{ id, date, day, topic, seconds, pauses, note, wpm }]
@@ -138,21 +138,21 @@ export const useProgressStore = defineStore('progress', () => {
     const changed = Boolean(data.value.done[key]) !== value
     const dayTasks = plan.days.find((d) => d.number === day)?.tasks || []
     const willBeComplete = dayTasks.every((_, j) => (j === i ? value : isDone(day, j)))
-    const prev = data.value.dayDates?.[day] || {}
+    const prev = data.value.dayDates2?.[day] || {}
     const dates = { start: prev.start || date, end: willBeComplete ? prev.end || date : null }
 
     const patch = {
       ...extraPatch,
       done: { [key]: value },
       lastDay: day,
-      dayDates: { [day]: dates },
+      dayDates2: { [day]: dates },
     }
     if (value && changed) patch.activity = { [date]: increment(1) }
     commit((d) => {
       extraLocal(d)
       d.done[key] = value
       d.lastDay = day
-      d.dayDates = { ...d.dayDates, [day]: dates }
+      d.dayDates2 = { ...d.dayDates2, [day]: dates }
       if (value && changed) d.activity[date] = (d.activity[date] || 0) + 1
     }, patch)
     return true
@@ -253,7 +253,7 @@ export const useProgressStore = defineStore('progress', () => {
       .filter((t) => !isDone(n, t.index))
   }
 
-  const dayDatesOf = (n) => data.value.dayDates?.[n] || {}
+  const dayDatesOf = (n) => data.value.dayDates2?.[n] || {}
 
   /**
    * True when the current day was started on an earlier date and still isn't

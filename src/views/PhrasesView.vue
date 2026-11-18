@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, watch, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { plan } from '@/lib/plan'
+import { plan, phraseSets } from '@/lib/plan'
 import { speak, stopSpeaking, ttsSupported } from '@/lib/speech'
 import SpeakButton from '@/components/SpeakButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
@@ -13,12 +13,15 @@ const tab = ref(['list', 'cards', 'pron'].includes(route.query.tab) ? route.quer
 const weekFilter = ref(route.query.week ? Number(route.query.week) : 0)
 const rate = ref(0.9)
 
-const weeksWithPhrases = plan.weeks.filter((w) => w.phrases.length)
+const weeksWithPhrases = phraseSets
 // a week without its own table (12, 13) falls back to "all"
-if (weekFilter.value && !weeksWithPhrases.some((w) => w.number === weekFilter.value)) weekFilter.value = 0
+if (weekFilter.value && !weeksWithPhrases.some((w) => w.number === weekFilter.value))
+  weekFilter.value = 0
 
 watch([tab, weekFilter], () => {
-  router.replace({ query: { tab: tab.value, ...(weekFilter.value ? { week: weekFilter.value } : {}) } })
+  router.replace({
+    query: { tab: tab.value, ...(weekFilter.value ? { week: weekFilter.value } : {}) },
+  })
   stopShadow()
   resetCards()
 })
@@ -94,7 +97,9 @@ function sayable(row) {
   <div class="page">
     <div class="page-head">
       <div>
-        <p class="eyebrow">{{ plan.phrases.length }} ta ibora · {{ plan.pronunciation.length }} ta so'z</p>
+        <p class="eyebrow">
+          {{ plan.phrases.length }} ta ibora · {{ plan.pronunciation.length }} ta so'z
+        </p>
         <h1>Iboralar</h1>
       </div>
       <label v-if="ttsSupported" class="rate small muted">
@@ -120,7 +125,7 @@ function sayable(row) {
     <select v-if="tab !== 'pron'" v-model.number="weekFilter" class="input week-select">
       <option :value="0">Barcha haftalar</option>
       <option v-for="w in weeksWithPhrases" :key="w.number" :value="w.number">
-        {{ w.number }}-hafta — {{ w.title }}
+        {{ w.title }}
       </option>
     </select>
 
@@ -130,13 +135,21 @@ function sayable(row) {
         <div>
           <strong>Shadowing</strong>
           <p class="small muted">
-            Sayt iborani o'qiydi → siz pauzada ovoz chiqarib takrorlaysiz. Ohang va urg'uni ko'chiring.
+            Sayt iborani o'qiydi → siz pauzada ovoz chiqarib takrorlaysiz. Ohang va urg'uni
+            ko'chiring.
           </p>
         </div>
-        <button v-if="shadowIdx < 0" class="btn primary" :disabled="!ttsSupported" @click="startShadow">
+        <button
+          v-if="shadowIdx < 0"
+          class="btn primary"
+          :disabled="!ttsSupported"
+          @click="startShadow"
+        >
           <AppIcon name="play" :size="16" /> Boshlash
         </button>
-        <button v-else class="btn" @click="stopShadow"><AppIcon name="stop" :size="16" /> To'xtatish</button>
+        <button v-else class="btn" @click="stopShadow">
+          <AppIcon name="stop" :size="16" /> To'xtatish
+        </button>
       </div>
 
       <section v-for="w in groups" :key="w.number" class="card">
@@ -178,7 +191,9 @@ function sayable(row) {
         <p>Bildim: {{ score.known }} · Qayta: {{ score.again }}</p>
       </div>
       <div class="row">
-        <button class="btn sm" @click="resetCards(true)"><AppIcon name="shuffle" :size="15" /> Aralashtirib boshlash</button>
+        <button class="btn sm" @click="resetCards(true)">
+          <AppIcon name="shuffle" :size="15" /> Aralashtirib boshlash
+        </button>
         <button class="btn sm ghost" @click="resetCards(false)">Qaytadan</button>
       </div>
     </template>
@@ -199,7 +214,9 @@ function sayable(row) {
           <tbody>
             <tr v-for="r in plan.pronunciation" :key="r.word">
               <td class="play-cell"><SpeakButton :text="sayable(r)" :rate="rate" /></td>
-              <td><strong>{{ r.word }}</strong></td>
+              <td>
+                <strong>{{ r.word }}</strong>
+              </td>
               <td>{{ r.how }}</td>
               <td class="muted wrong">{{ r.mistake }}</td>
             </tr>

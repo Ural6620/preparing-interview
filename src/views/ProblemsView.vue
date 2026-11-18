@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { algorithms, getPattern } from '@/lib/knowledge'
+import { daysForProblem } from '@/lib/curriculum'
 import { useProgressStore } from '@/stores/progress'
 import SpeakButton from '@/components/SpeakButton.vue'
 import CodeBlock from '@/components/CodeBlock.vue'
@@ -43,7 +44,10 @@ const list = computed(() =>
 )
 
 function toggleReveal(id, part) {
-  reveal.value = { ...reveal.value, [id]: { ...reveal.value[id], [part]: !reveal.value[id]?.[part] } }
+  reveal.value = {
+    ...reveal.value,
+    [id]: { ...reveal.value[id], [part]: !reveal.value[id]?.[part] },
+  }
 }
 function setStatus(id, s) {
   progress.setProblem(id, status(id) === s ? '' : s)
@@ -65,19 +69,25 @@ const diffClass = { Easy: 'success', Medium: 'warn', Hard: 'danger' }
     <template v-else>
       <div class="stats">
         <div class="card stat">
-          <span class="label">Yechildi</span><strong>{{ stats.solved }}<small>/{{ problems.length }}</small></strong>
+          <span class="label">Yechildi</span
+          ><strong
+            >{{ stats.solved }}<small>/{{ problems.length }}</small></strong
+          >
         </div>
         <div class="card stat">
           <span class="label">Yordamsiz</span><strong>{{ stats.unaided }}</strong>
         </div>
         <div class="card stat">
-          <span class="label">Easy / Medium</span><strong>{{ stats.Easy }}<small> / </small>{{ stats.Medium }}</strong>
+          <span class="label">Easy / Medium</span
+          ><strong>{{ stats.Easy }}<small> / </small>{{ stats.Medium }}</strong>
         </div>
       </div>
 
       <div class="tabs">
         <button :class="{ active: tab === 'problems' }" @click="tab = 'problems'">Masalalar</button>
-        <button :class="{ active: tab === 'patterns' }" @click="tab = 'patterns'">Pattern'lar</button>
+        <button :class="{ active: tab === 'patterns' }" @click="tab = 'patterns'">
+          Pattern'lar
+        </button>
       </div>
 
       <!-- PATTERNS -->
@@ -86,7 +96,7 @@ const diffClass = { Easy: 'success', Medium: 'warn', Hard: 'danger' }
           <div class="row">
             <h3>{{ pt.title }}</h3>
             <span class="spacer" />
-            <button class="btn sm" @click="(patternFilter = pt.id), (tab = 'problems')">
+            <button class="btn sm" @click="((patternFilter = pt.id), (tab = 'problems'))">
               Masalalar ({{ problems.filter((p) => p.pattern === pt.id).length }}) →
             </button>
           </div>
@@ -117,16 +127,24 @@ const diffClass = { Easy: 'success', Medium: 'warn', Hard: 'danger' }
 
         <article v-for="p in list" :key="p.id" class="card problem" :class="status(p.id)">
           <header @click="openId = openId === p.id ? null : p.id">
-            <span class="tick">{{ status(p.id) === 'unaided' ? '★' : status(p.id) ? '✓' : '' }}</span>
+            <span class="tick">{{
+              status(p.id) === 'unaided' ? '★' : status(p.id) ? '✓' : ''
+            }}</span>
             <div class="ptitle">
               <strong>{{ p.title }}</strong>
               <div class="row meta">
                 <span class="chip" :class="diffClass[p.difficulty]">{{ p.difficulty }}</span>
                 <span class="chip">{{ getPattern(p.pattern)?.title || p.pattern }}</span>
-                <span v-if="p.days?.length" class="small muted">Kun {{ p.days.join(', ') }}</span>
+                <span v-if="daysForProblem(p.id).length" class="small muted"
+                  >Kun {{ daysForProblem(p.id).join(', ') }}</span
+                >
               </div>
             </div>
-            <AppIcon :name="openId === p.id ? 'chevronLeft' : 'chevronRight'" :size="16" class="muted chev" />
+            <AppIcon
+              :name="openId === p.id ? 'chevronLeft' : 'chevronRight'"
+              :size="16"
+              class="muted chev"
+            />
           </header>
 
           <div v-if="openId === p.id" class="pbody">
@@ -142,13 +160,17 @@ const diffClass = { Easy: 'success', Medium: 'warn', Hard: 'danger' }
               <p v-if="reveal[p.id]?.hint" class="reveal" v-html="inlineMd(p.hint)" />
             </div>
             <div class="step">
-              <button class="btn sm" @click="toggleReveal(p.id, 'approach')">🗣 Inglizcha tushuntirish</button>
+              <button class="btn sm" @click="toggleReveal(p.id, 'approach')">
+                🗣 Inglizcha tushuntirish
+              </button>
               <div v-if="reveal[p.id]?.approach" class="reveal">
                 <p>{{ p.approach }} <SpeakButton :text="p.approach" /></p>
                 <p class="small">
                   <b>Complexity:</b> time {{ p.complexity?.time }}, space {{ p.complexity?.space }}
                 </p>
-                <p v-if="p.edgeCases?.length" class="small"><b>Edge cases:</b> {{ p.edgeCases.join(' · ') }}</p>
+                <p v-if="p.edgeCases?.length" class="small">
+                  <b>Edge cases:</b> {{ p.edgeCases.join(' · ') }}
+                </p>
               </div>
             </div>
             <div class="step">
@@ -158,10 +180,18 @@ const diffClass = { Easy: 'success', Medium: 'warn', Hard: 'danger' }
 
             <div class="row status-row">
               <span class="small muted">Natija:</span>
-              <button class="btn sm" :class="{ active: status(p.id) === 'solved' }" @click="setStatus(p.id, 'solved')">
+              <button
+                class="btn sm"
+                :class="{ active: status(p.id) === 'solved' }"
+                @click="setStatus(p.id, 'solved')"
+              >
                 ✓ Yordam bilan
               </button>
-              <button class="btn sm" :class="{ active: status(p.id) === 'unaided' }" @click="setStatus(p.id, 'unaided')">
+              <button
+                class="btn sm"
+                :class="{ active: status(p.id) === 'unaided' }"
+                @click="setStatus(p.id, 'unaided')"
+              >
                 ★ Yordamsiz
               </button>
             </div>
@@ -172,7 +202,8 @@ const diffClass = { Easy: 'success', Medium: 'warn', Hard: 'danger' }
     </template>
 
     <p class="small muted">
-      Maslahat: avval 20–25 daqiqa o'zingiz urinib ko'ring, ovoz chiqarib. Keyin maslahatni, oxirida yechimni oching.
+      Maslahat: avval 20–25 daqiqa o'zingiz urinib ko'ring, ovoz chiqarib. Keyin maslahatni, oxirida
+      yechimni oching.
       <RouterLink to="/reference">Live coding shabloni →</RouterLink>
     </p>
   </div>

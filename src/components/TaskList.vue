@@ -2,7 +2,8 @@
 import { computed, ref } from 'vue'
 import { marked } from 'marked'
 import { RouterLink } from 'vue-router'
-import { getDay } from '@/lib/plan'
+import { getDay, getWeek } from '@/lib/plan'
+import { dayInfo } from '@/lib/curriculum'
 import { useProgressStore } from '@/stores/progress'
 import { aiReady, checkTask, isFree, DAILY_FREE_LIMIT } from '@/lib/aiCheck'
 import AppIcon from './AppIcon.vue'
@@ -23,10 +24,24 @@ const AI_PROMPT =
 function actionsFor(task, i) {
   const t = task.text
   const out = []
-  if (task.title.startsWith('Chunks')) {
-    out.push({ label: '🧠 Bugungi yodlash', to: { path: `/day/${props.day}`, hash: '#drill' } })
-    out.push({ label: 'Iboralar', to: { path: '/phrases', query: { week: dayData.value.week } } })
-  }
+  const unit = dayInfo(props.day)?.unit
+  if (task.title === 'Mavzu' && unit?.kind === 'topic')
+    out.push({ label: '📖 Darsni ochish', to: `/learn/${unit.topic.domain.id}/${unit.topic.id}` })
+  if (task.title === 'Mavzu' && unit?.kind === 'pattern')
+    out.push({
+      label: '📖 Pattern',
+      to: { path: '/problems', query: { pattern: unit.pattern.id } },
+    })
+  if (task.title === 'Masalalar')
+    for (const p of unit?.problems || [])
+      out.push({ label: p.title, to: { path: '/problems', query: { open: p.id } } })
+  if (task.title === 'Interview savollari')
+    out.push({ label: '🧠 Savollarni ochish', to: { path: `/day/${props.day}`, hash: '#drill' } })
+  if (task.title === 'Inglizcha gapirish')
+    out.push({
+      label: 'Iboralar',
+      to: { path: '/phrases', query: { week: getWeek(dayData.value.week)?.phraseWeek } },
+    })
   if (
     /audio|monolog|jonli|tell me about yourself|ovoz chiqarib|mock|hikoya|tayyorgarliksiz/i.test(
       t,

@@ -10,6 +10,7 @@ import {
   formatDateUz,
   TOTAL_DAYS,
 } from '@/lib/plan'
+import { dayInfo } from '@/lib/curriculum'
 import { useAuthStore } from '@/stores/auth'
 import { useProgressStore } from '@/stores/progress'
 import TaskList from '@/components/TaskList.vue'
@@ -25,6 +26,7 @@ const firstName = computed(() => auth.user?.name?.split(' ')[0] || '')
 const dayNum = computed(() => progress.currentDay)
 const day = computed(() => getDay(dayNum.value))
 const week = computed(() => getWeek(day.value.week))
+const info = computed(() => dayInfo(dayNum.value))
 const dp = computed(() => progress.dayProgress(dayNum.value))
 const allDone = computed(() => progress.completedDays === TOTAL_DAYS)
 const phrases = computed(() => phrasesForWeek(day.value.week).slice(0, 4))
@@ -65,7 +67,7 @@ const greeting = computed(() => {
         <h1 v-if="!allDone">
           Kun {{ dayNum }} <span class="muted">/ {{ TOTAL_DAYS }}</span>
         </h1>
-        <h1 v-else>90 kun tugadi! 🎉</h1>
+        <h1 v-else>{{ TOTAL_DAYS }} kun tugadi! 🎉</h1>
       </div>
       <RouterLink :to="`/day/${dayNum}`" class="btn">
         Kunni to'liq ochish <AppIcon name="chevronRight" :size="16" />
@@ -114,8 +116,13 @@ const greeting = computed(() => {
     <section class="card today">
       <div class="today-head">
         <div>
-          <p class="eyebrow">{{ week.number }}-hafta · {{ progress.dayLabel(dayNum) }}</p>
-          <h2>{{ week.title }}</h2>
+          <p class="eyebrow">
+            {{ week.number }}-hafta · {{ week.title }} · {{ progress.dayLabel(dayNum) }}
+          </p>
+          <h2>{{ info.area.icon }} {{ info.area.title }}: {{ info.unit.title }}</h2>
+          <p v-if="info.round > 1" class="small muted round">
+            {{ info.round }}-aylana — {{ info.roundName }}
+          </p>
           <div v-if="week.focus.length" class="row focus">
             <span v-for="f in week.focus" :key="f.label" class="chip">
               <b v-if="f.label">{{ f.label }}:</b> {{ f.value }}
@@ -156,7 +163,7 @@ const greeting = computed(() => {
         <div class="row">
           <h3>Haftaning iboralari</h3>
           <span class="spacer" />
-          <RouterLink :to="{ path: '/phrases', query: { week: week.number } }" class="small"
+          <RouterLink :to="{ path: '/phrases', query: { week: week.phraseWeek } }" class="small"
             >Hammasi →</RouterLink
           >
         </div>
@@ -261,6 +268,9 @@ const greeting = computed(() => {
 }
 .today-head h2 {
   margin-bottom: 8px;
+}
+.round {
+  margin: -4px 0 8px;
 }
 .focus {
   gap: 6px;

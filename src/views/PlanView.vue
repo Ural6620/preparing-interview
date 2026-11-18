@@ -16,18 +16,6 @@ function dayState(n) {
   return ''
 }
 
-// "Portfolio loyiha" checklist from the reference section: "- [ ] Name (Kun N)".
-// An item counts as done when that day's technical task (index 2) is ticked.
-const portfolio = computed(() => {
-  const tracker = plan.reference.find((r) => /Progress tracker/i.test(r.title))
-  if (!tracker) return []
-  const part = tracker.md.split('#### Portfolio loyiha')[1]?.split('####')[0] || ''
-  return [...part.matchAll(/- \[ \] (.+) \(Kun (\d+)\)/g)].map((m) => {
-    const day = Number(m[2])
-    return { name: m[1], day, done: progress.isDone(day, 2) }
-  })
-})
-
 const monthWeeks = computed(() =>
   plan.months.map((m) => ({ ...m, weekObjs: m.weeks.map((n) => getWeek(n)) })),
 )
@@ -37,7 +25,7 @@ const monthWeeks = computed(() =>
   <div class="page">
     <div class="page-head">
       <div>
-        <p class="eyebrow">90 kunlik reja</p>
+        <p class="eyebrow">{{ TOTAL_DAYS }} kunlik reja · har hafta 7 soha</p>
         <h1>Reja</h1>
       </div>
       <div class="overall">
@@ -89,18 +77,6 @@ const monthWeeks = computed(() =>
     </section>
 
     <SelfAssessment />
-
-    <section v-if="portfolio.length" class="card">
-      <h2>Portfolio loyiha</h2>
-      <p class="small muted">Tegishli kunning texnik vazifasi belgilanganda avtomatik ✓ bo'ladi.</p>
-      <ul class="portfolio">
-        <li v-for="p in portfolio" :key="p.day" :class="{ done: p.done }">
-          <span class="tick">{{ p.done ? '✓' : '' }}</span>
-          <span class="name">{{ p.name }}</span>
-          <RouterLink :to="`/day/${p.day}`" class="small">Kun {{ p.day }}</RouterLink>
-        </li>
-      </ul>
-    </section>
   </div>
 </template>
 
@@ -191,25 +167,6 @@ const monthWeeks = computed(() =>
 .d.current {
   outline: 2px solid var(--accent);
   color: var(--accent);
-}
-.portfolio {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.portfolio li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: var(--surface-2);
-}
-.portfolio li.done {
-  background: var(--success-soft);
 }
 .tick {
   width: 22px;

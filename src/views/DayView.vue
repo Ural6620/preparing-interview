@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { getDay, getWeek, phrasesForWeek, TOTAL_DAYS } from '@/lib/plan'
+import { dayInfo } from '@/lib/curriculum'
 import { useProgressStore } from '@/stores/progress'
 import TaskList from '@/components/TaskList.vue'
 import DayMaterials from '@/components/DayMaterials.vue'
@@ -15,6 +16,7 @@ const progress = useProgressStore()
 const n = computed(() => Math.min(Math.max(Number(route.params.n) || 1, 1), TOTAL_DAYS))
 const day = computed(() => getDay(n.value))
 const week = computed(() => getWeek(day.value.week))
+const info = computed(() => dayInfo(n.value))
 const dp = computed(() => progress.dayProgress(n.value))
 const phrases = computed(() => phrasesForWeek(day.value.week))
 const ownPhrases = computed(() => week.value.phrases.length > 0)
@@ -49,6 +51,10 @@ function onNote() {
       <div class="center">
         <p class="eyebrow">{{ week.number }}-hafta · {{ week.title }}</p>
         <h1>Kun {{ n }}</h1>
+        <p v-if="info" class="area">
+          {{ info.area.icon }} {{ info.area.title }}: <b>{{ info.unit.title }}</b>
+          <span v-if="info.round > 1" class="muted small"> · {{ info.round }}-aylana</span>
+        </p>
         <p v-if="progress.dayLabel(n)" class="small muted date">
           {{ progress.isDayComplete(n) ? 'Tugatilgan: ' : '' }}{{ progress.dayLabel(n) }}
         </p>
@@ -94,7 +100,7 @@ function onNote() {
         <h3>{{ ownPhrases ? 'Haftaning iboralari' : 'Barcha iboralar — takrorlash' }}</h3>
         <span class="spacer" />
         <RouterLink
-          :to="{ path: '/phrases', query: { week: week.number, tab: 'cards' } }"
+          :to="{ path: '/phrases', query: { week: week.phraseWeek, tab: 'cards' } }"
           class="btn sm"
         >
           Flashcards →
@@ -148,6 +154,9 @@ function onNote() {
   flex: 1;
   text-align: center;
   min-width: 0;
+}
+.day-nav .area {
+  margin: 2px 0 0;
 }
 .day-nav h1 {
   margin: 0;

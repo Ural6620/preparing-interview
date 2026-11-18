@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { domains, getDomain, questions, TOTAL_QUESTIONS } from '@/lib/knowledge'
+import { daysForTopic } from '@/lib/curriculum'
 import { useProgressStore } from '@/stores/progress'
 import QuestionCard from '@/components/QuestionCard.vue'
 import AppIcon from '@/components/AppIcon.vue'
@@ -26,7 +27,9 @@ const results = computed(() => {
   const s = search.value.trim().toLowerCase()
   if (s.length < 2) return []
   return questions
-    .filter((q) => (q.q + ' ' + q.a + ' ' + (q.uz || '') + ' ' + q.topic.title).toLowerCase().includes(s))
+    .filter((q) =>
+      (q.q + ' ' + q.a + ' ' + (q.uz || '') + ' ' + q.topic.title).toLowerCase().includes(s),
+    )
     .slice(0, 30)
 })
 </script>
@@ -34,10 +37,14 @@ const results = computed(() => {
 <template>
   <!-- DOMAIN: list of topics -->
   <div v-if="domain" class="page">
-    <RouterLink to="/learn" class="back small"><AppIcon name="chevronLeft" :size="14" /> Bilim bazasi</RouterLink>
+    <RouterLink to="/learn" class="back small"
+      ><AppIcon name="chevronLeft" :size="14" /> Bilim bazasi</RouterLink
+    >
     <div class="page-head">
       <div>
-        <p class="eyebrow">{{ domain.topics.length }} mavzu · {{ domainStats(domain).total }} savol</p>
+        <p class="eyebrow">
+          {{ domain.topics.length }} mavzu · {{ domainStats(domain).total }} savol
+        </p>
         <h1>{{ domain.icon }} {{ domain.title }}</h1>
       </div>
       <RouterLink :to="{ path: '/practice', query: { d: domain.id } }" class="btn primary">
@@ -57,7 +64,9 @@ const results = computed(() => {
         <strong>{{ t.title }}</strong>
         <small class="muted">
           {{ t.questions.length }} savol
-          <template v-if="t.days?.length"> · Kun {{ t.days.slice(0, 4).join(', ') }}{{ t.days.length > 4 ? '…' : '' }}</template>
+          <template v-if="daysForTopic(t.id).length">
+            · Kun {{ daysForTopic(t.id).join(', ') }}</template
+          >
         </small>
         <div class="bar"><span :style="{ width: topicStats(t).pct + '%' }" /></div>
       </div>
@@ -72,7 +81,9 @@ const results = computed(() => {
         <p class="eyebrow">{{ TOTAL_QUESTIONS }} ta savol va namuna javob</p>
         <h1>Bilim bazasi</h1>
       </div>
-      <RouterLink to="/practice" class="btn primary"><AppIcon name="target" :size="16" /> Mock interview</RouterLink>
+      <RouterLink to="/practice" class="btn primary"
+        ><AppIcon name="target" :size="16" /> Mock interview</RouterLink
+      >
     </div>
 
     <div class="card overall">
@@ -83,7 +94,8 @@ const results = computed(() => {
       </div>
       <div class="bar"><span :style="{ width: overall.pct + '%' }" /></div>
       <p class="small muted">
-        Savolni oching → avval o'zingiz ovoz chiqarib javob bering → namuna javob bilan solishtiring → baholang.
+        Savolni oching → avval o'zingiz ovoz chiqarib javob bering → namuna javob bilan solishtiring
+        → baholang.
       </p>
     </div>
 
@@ -123,7 +135,9 @@ const results = computed(() => {
           <span class="emoji">🧩</span>
           <strong>Algoritm masalalari</strong>
         </div>
-        <p class="small muted intro">LeetCode masalalari: pattern, maslahat, inglizcha tushuntirish va yechim.</p>
+        <p class="small muted intro">
+          LeetCode masalalari: pattern, maslahat, inglizcha tushuntirish va yechim.
+        </p>
       </RouterLink>
     </div>
   </div>

@@ -1,7 +1,8 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { topicsForDay, problemsForDay, getPattern } from '@/lib/knowledge'
+import { getPattern } from '@/lib/knowledge'
+import { topicsForDay, problemsForDay } from '@/lib/curriculum'
 import { useProgressStore } from '@/stores/progress'
 
 const props = defineProps({
@@ -12,8 +13,8 @@ const progress = useProgressStore()
 
 const topics = computed(() => topicsForDay(props.day))
 const problems = computed(() => problemsForDay(props.day))
-// self-assessment days (plan: 1, 28, 84 — and month-end 56)
-const assess = computed(() => [1, 28, 56, 84].includes(props.day))
+// self-assessment: first day and every 4 weeks
+const assess = computed(() => props.day === 1 || props.day % 28 === 0)
 
 function topicDone(t) {
   return t.questions.filter((_, i) => progress.data.qaStatus[`${t.id}-${i}`] === 'ok').length
@@ -33,7 +34,9 @@ function topicDone(t) {
         <span class="ico">{{ t.domain.icon }}</span>
         <span class="txt">
           <strong>{{ t.title }}</strong>
-          <small class="muted">{{ t.domain.title }} · {{ topicDone(t) }}/{{ t.questions.length }} savol</small>
+          <small class="muted"
+            >{{ t.domain.title }} · {{ topicDone(t) }}/{{ t.questions.length }} savol</small
+          >
         </span>
       </RouterLink>
       <RouterLink
@@ -45,7 +48,9 @@ function topicDone(t) {
         <span class="ico">{{ progress.data.problems[p.id] ? '✅' : '🧩' }}</span>
         <span class="txt">
           <strong>{{ p.title }}</strong>
-          <small class="muted">{{ p.difficulty }} · {{ getPattern(p.pattern)?.title || p.pattern }}</small>
+          <small class="muted"
+            >{{ p.difficulty }} · {{ getPattern(p.pattern)?.title || p.pattern }}</small
+          >
         </span>
       </RouterLink>
       <RouterLink v-if="assess" to="/plan#assessment" class="item">

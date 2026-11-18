@@ -48,7 +48,7 @@ const nav = [
         <span class="logo">IP</span>
         <span>
           <strong>Interview Prep</strong>
-          <small>90 kun · English + Full-stack</small>
+          <small>Har kuni 1 soha · EN + UZ</small>
         </span>
       </RouterLink>
       <nav>
@@ -88,7 +88,12 @@ const nav = [
           <AppIcon name="book" :size="18" />
         </RouterLink>
         <button v-if="auth.user" class="avatar-btn" title="Chiqish" @click="confirmLogout">
-          <img v-if="auth.user.photo" :src="auth.user.photo" alt="Chiqish" referrerpolicy="no-referrer" />
+          <img
+            v-if="auth.user.photo"
+            :src="auth.user.photo"
+            alt="Chiqish"
+            referrerpolicy="no-referrer"
+          />
           <AppIcon v-else name="logout" :size="18" />
         </button>
       </div>

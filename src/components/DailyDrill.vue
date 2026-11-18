@@ -93,7 +93,7 @@ const doneCount = computed(() => all.value.filter((q) => progress.ratedToday(q.k
 
     <!-- questions -->
     <div v-if="newQs.length" class="block">
-      <h4>❓ Yangi savollar ({{ newQs.length }})</h4>
+      <h4>❓ Bugungi savollar ({{ newQs.length }})</h4>
       <div v-for="(q, i) in newQs" :key="q.key" class="qwrap">
         <RouterLink :to="`/learn/${q.domain.id}/${q.topic.id}`" class="small muted topic">
           {{ q.domain.icon }} {{ q.topic.title }}

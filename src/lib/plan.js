@@ -1,8 +1,21 @@
 import raw from '@/content/plan.md?raw'
-import { parsePlan, taskKey } from './parsePlan'
+import { parsePlan } from './parsePlan'
+import { buildCurriculum, setCurriculumIndex } from './curriculum'
 
-export const plan = parsePlan(raw)
-export { taskKey }
+// plan.md supplies the intro, the reference section and the phrase tables;
+// the day-by-day schedule is generated from the knowledge base (curriculum.js).
+const parsed = parsePlan(raw)
+const built = buildCurriculum(parsed)
+setCurriculumIndex(built.unitByDay)
+
+export const plan = { ...parsed, days: built.days, weeks: built.weeks, months: built.months }
+
+/** Phrase tables as written in plan.md (topic-grouped), for the phrases page. */
+export const phraseSets = parsed.weeks.filter((w) => w.phrases.length)
+
+// "c2" = second version of the schedule; progress from the old fixed
+// day-by-day plan (keys "d1_0", ...) is kept in the database but not mixed in.
+export const taskKey = (day, i) => `c2d${day}_${i}`
 
 export const TOTAL_DAYS = plan.days.length
 export const TOTAL_TASKS = plan.days.reduce((n, d) => n + d.tasks.length, 0)

@@ -1,9 +1,22 @@
 // Loads every knowledge file in src/content/knowledge/ (except algorithms.js, which has its own schema).
 const modules = import.meta.glob('../content/knowledge/*.js', { eager: true, import: 'default' })
 
-const ORDER = ['frontend', 'backend', 'java', 'spring', 'database', 'devops', 'engineering', 'system-design', 'behavioral', 'grammar']
+const ORDER = [
+  'frontend',
+  'backend',
+  'java',
+  'spring',
+  'database',
+  'devops',
+  'engineering',
+  'system-design',
+  'behavioral',
+  'grammar',
+]
 
-export const algorithms = Object.entries(modules).find(([p]) => p.endsWith('/algorithms.js'))?.[1] || {
+export const algorithms = Object.entries(modules).find(([p]) =>
+  p.endsWith('/algorithms.js'),
+)?.[1] || {
   patterns: [],
   problems: [],
 }
@@ -31,14 +44,6 @@ export function getDomain(id) {
 
 export function getTopic(domainId, topicId) {
   return getDomain(domainId)?.topics.find((t) => t.id === topicId) || null
-}
-
-export function topicsForDay(day) {
-  return topics.filter((t) => t.days?.includes(day))
-}
-
-export function problemsForDay(day) {
-  return algorithms.problems.filter((p) => p.days?.includes(day))
 }
 
 export function getPattern(id) {

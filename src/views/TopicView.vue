@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { getDomain } from '@/lib/knowledge'
+import { daysForTopic } from '@/lib/curriculum'
 import { useProgressStore } from '@/stores/progress'
 import QuestionCard from '@/components/QuestionCard.vue'
 import SpeakButton from '@/components/SpeakButton.vue'
@@ -18,9 +19,13 @@ const topic = computed(() => (idx.value >= 0 ? domain.value.topics[idx.value] : 
 const prev = computed(() => (idx.value > 0 ? domain.value.topics[idx.value - 1] : null))
 const next = computed(() => (topic.value ? domain.value.topics[idx.value + 1] : null))
 const drill = computed(() => domain.value?.kind === 'drill')
+const planDays = computed(() => (topic.value ? daysForTopic(topic.value.id) : []))
 
 const okCount = computed(
-  () => topic.value?.questions.filter((_, i) => progress.data.qaStatus[`${topic.value.id}-${i}`] === 'ok').length ?? 0,
+  () =>
+    topic.value?.questions.filter(
+      (_, i) => progress.data.qaStatus[`${topic.value.id}-${i}`] === 'ok',
+    ).length ?? 0,
 )
 </script>
 
@@ -37,9 +42,11 @@ const okCount = computed(
       </div>
     </div>
 
-    <div v-if="topic.days?.length" class="row days">
+    <div v-if="planDays.length" class="row days">
       <span class="small muted">Rejada:</span>
-      <RouterLink v-for="d in topic.days" :key="d" :to="`/day/${d}`" class="chip accent">Kun {{ d }}</RouterLink>
+      <RouterLink v-for="d in planDays" :key="d" :to="`/day/${d}`" class="chip accent"
+        >Kun {{ d }}</RouterLink
+      >
     </div>
 
     <section class="card">
@@ -58,8 +65,12 @@ const okCount = computed(
       <article v-for="(l, i) in topic.lesson" :id="`l${i}`" :key="i" class="lesson-part">
         <h3>{{ i + 1 }}. {{ l.title }}</h3>
         <template v-for="(b, j) in blocksMd(l.body)" :key="j">
-          <ul v-if="b.type === 'ul'"><li v-for="(it, k) in b.items" :key="k" v-html="it" /></ul>
-          <ol v-else-if="b.type === 'ol'"><li v-for="(it, k) in b.items" :key="k" v-html="it" /></ol>
+          <ul v-if="b.type === 'ul'">
+            <li v-for="(it, k) in b.items" :key="k" v-html="it" />
+          </ul>
+          <ol v-else-if="b.type === 'ol'">
+            <li v-for="(it, k) in b.items" :key="k" v-html="it" />
+          </ol>
           <p v-else v-html="b.html" />
         </template>
         <div v-if="l.code" class="lesson-code">
@@ -111,7 +122,9 @@ const okCount = computed(
       <h2>Resurslar</h2>
       <ul class="res">
         <li v-for="r in topic.resources" :key="r.url">
-          <a :href="r.url" target="_blank" rel="noopener">{{ r.title }} <AppIcon name="external" :size="13" /></a>
+          <a :href="r.url" target="_blank" rel="noopener"
+            >{{ r.title }} <AppIcon name="external" :size="13"
+          /></a>
         </li>
       </ul>
     </section>
